@@ -11,6 +11,7 @@ sphinx-no-pragma
 
 .. _sphinx-no-pragma: https://github.com/barseghyanartur/sphinx-no-pragma/
 .. _Read the Docs: http://sphinx-no-pragma.readthedocs.io/
+.. _Usage: http://sphinx-no-pragma.readthedocs.io/en/latest/usage.html
 .. _Contributor guidelines: https://sphinx-no-pragma.readthedocs.io/en/latest/contributor_guidelines.html
 
 **Improve developer experience**:
@@ -152,6 +153,8 @@ Sphinx configuration
 
 Code example
 ------------
+**examples/example_1.py**
+
 .. code-block:: python
 
     from typing import Any, Optional
@@ -171,6 +174,48 @@ Code example
 
     # Deliberately long line to violate PEP 8 line length rule, suppressed with noqa
     print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
+
+Given that this is your code structure:
+
+.. code-block:: text
+
+    ├── examples
+    │  └── example_1.py
+    ├── docs
+    │  ├── conf.py
+    │  ├── index.rst
+    │  ├── make.bat
+    │  ├── Makefile
+    │  ├── _static
+    │  │  └── example_1.py
+    │  └── usage.rst
+    ├── LICENSE
+    ├── Makefile
+    ├── pyproject.toml
+    ├── README.rst
+    └── sphinx_no_pragma.py
+
+Either use ``html_extra_path = ["examples"]`` or make a symlink to
+``examples/example_1.py`` from ``docs/_static``.
+
+Then include it in your docs as follows:
+
+.. code-block:: rst
+
+    .. container:: jsphinx-download
+
+    .. literalinclude:: _static/example_1.py
+        :language: python
+        :lines: 1-
+
+    *See the full example*
+    :download:`here <_static/example_1.py>`
+
+Now, rendered, your code will not contain `# type: ignore` or `# noqa` pragma
+comments.
+
+See `usage`_ for a demo. Click on the `See the full example here` link to see
+the original code.
 
 Tests
 =====
