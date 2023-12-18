@@ -3,7 +3,10 @@ name = "sphinx-no-pragma"
 description = "Strip pragmas from your docs."
 readme = "README.rst"
 version = "0.1"
-dependencies = []
+dependencies = [
+    "docutils",
+    "sphinx",
+]
 authors = [
     {name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com"},
 ]
@@ -52,7 +55,6 @@ test = [
     "pytest-cov",
 ]
 docs = [
-    "sphinx<6.0",
     "sphinx-rtd-theme>=1.3.0",
 ]
 
