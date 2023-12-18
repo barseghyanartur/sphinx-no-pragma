@@ -37,7 +37,6 @@ extensions = [
 # Add any endings you want to remove
 ignore_comments_endings = ["# type: ignore", "# noqa"]
 
-
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 

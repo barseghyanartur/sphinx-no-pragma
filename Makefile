@@ -12,6 +12,7 @@ build_docs:
 rebuild_docs:
 	source $(VENV) && sphinx-apidoc . --full -o docs -H 'sphinx-no-pragma' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/index.rst.distrib docs/index.rst
+	cp docs/conf.py.distrib docs/conf.py
 
 # Format code using Black
 black:
