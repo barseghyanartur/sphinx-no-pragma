@@ -16,6 +16,7 @@ Contributor guidelines
 .. _installation: https://sphinx-no-pragma.readthedocs.io/#installation
 .. _features: https://sphinx-no-pragma.readthedocs.io/#features
 .. _prerequisites: https://sphinx-no-pragma.readthedocs.io/#prerequisites
+.. _usage: https://sphinx-no-pragma.readthedocs.io/en/latest/usage.html
 
 Developer prerequisites
 -----------------------
@@ -122,7 +123,7 @@ For example:
 **When adding a new feature (in addition to the general list):**
 
 - Make sure to update the documentation (check whether the `installation`_,
-  `features`_, `recipes`_ and `quick start`_ require changes).
+  `features`_ or `usage`_ require changes).
 
 Questions
 ---------
