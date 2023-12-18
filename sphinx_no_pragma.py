@@ -2,7 +2,11 @@
 https://github.com/barseghyanartur/sphinx-no-pragma/
 """
 
+import unittest
+from unittest.mock import MagicMock, Mock
+
 from docutils import nodes
+from sphinx.application import Sphinx
 from sphinx.directives.code import LiteralInclude
 
 __title__ = "sphinx-no-pragma"
@@ -63,3 +67,32 @@ def setup(app):
         "parallel_read_safe": True,
         "parallel_write_safe": True,
     }
+
+
+class TestNoPragmaLiteralInclude(unittest.TestCase):
+
+    def setUp(self):
+        # Mock the Sphinx application and its environment
+        self.app = Mock(spec=Sphinx)
+        self.app.env = MagicMock()
+        self.app.env.config = {'ignore_comments_endings': ['# type: ignore', '# noqa']}
+
+    def test_setup(self):
+        # Test the setup function
+        setup(self.app)
+        self.app.add_directive.assert_called_with("literalinclude", NoPragmaLiteralInclude, override=True)
+        self.assertIn('ignore_comments_endings', self.app.config.values)
+
+    def test_no_pragma_literal_include_run(self):
+        # Test the NoPragmaLiteralInclude directive
+        directive = NoPragmaLiteralInclude(
+            'literalinclude', [], {}, [], 0, 0, '', None, None)
+        directive.state = Mock()
+        directive.state.document.settings.env = self.app.env
+
+        # Create a mock node with sample content
+        node = nodes.literal_block(rawsource='print("Hello")  # type: ignore\nprint("World")  # noqa')
+        directive.run()
+
+        # Check if the directive processed the content correctly
+        self.assertEqual(node.rawsource, 'print("Hello")\nprint("World")')
