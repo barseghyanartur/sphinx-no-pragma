@@ -52,9 +52,9 @@ some say, "testing is everything!" and yet there will be someone else who
 will jump in with "write clean code! black, isort, mypy and ruff everywhere!"
 
 And yet there's you, who want to be good and write a better package, because
-there's a problem that needs to be fixed, and you know how, you want to share
-it with the world. You also want to assure or at least make an effort in
-making your project developer friendly, attractive for making contributions,
+there's a generic problem that needs to be solved, and you know how, you want 
+to share it with the world. You also want to assure or at least make an effort
+in making your project developer friendly, attractive for making contributions,
 which eventually leads to continuous improvement and make it live long(er).
 
 So, combining the best practices, you:
@@ -69,13 +69,17 @@ So, combining the best practices, you:
 Then you invest your time in making sure all your code looks correct and fix
 the never-ending `MyPy`_ issues.
 
-Then you need to make a small change, which is unfortunately backwards
-incompatible. You need to change the examples, the docs, the tests and the
-examples tests. However, you need to push the change quickly. As many times
-before, you skip documentation update, leaving it for "another time".
+Then you need to make a small change, which unfortunately, among other, 
+requires altering the examples code. You need to change the examples, the 
+docs, the tests and the examples tests. However, you also need to push the 
+change quickly. As many times before, you skip documentation update, 
+leaving it for "another time".
 
-By that time you discover that code maintenance is a hell. You start to make
-use of pragma comments.
+By that time you discover that code maintenance is a hell. You fix everything,
+tests pass you're happy to push, by then `MyPy`_ starts to nag about issues 
+you have no idea how to solve and by that moment you don't care about them. 
+You're sick of it and start using pragma comments to silence the errors, 
+leaving the fix for another day.
 
 Does this sound familiar?
 
@@ -83,7 +87,7 @@ Does this sound familiar?
 
 What if I tell you that you are actually just good with making sure your
 examples work and are covered with tests. Your documentation can directly
-include code from your examples (code that is tested). You don't need to
+include code from your examples (code that is tested!). You don't need to
 choose or balance between readability, explainability and low-maintenance.
 
 Written by lazy developer for lazy developers to improve developer experience
@@ -184,7 +188,6 @@ Given that this is your code structure:
     ├── docs
     │  ├── conf.py
     │  ├── index.rst
-    │  ├── make.bat
     │  ├── Makefile
     │  ├── _static
     │  │  └── example_1.py
@@ -219,7 +222,6 @@ the original code.
 
 Tests
 =====
-
 Run the tests with unittest:
 
 .. code-block:: sh
@@ -234,7 +236,6 @@ Or pytest:
 
 License
 =======
-
 MIT
 
 Support
@@ -246,5 +247,4 @@ For overall issues, go to
 
 Author
 ======
-
 Artur Barseghyan <artur.barseghyan@gmail.com>
