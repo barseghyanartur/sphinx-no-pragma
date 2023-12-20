@@ -16,7 +16,7 @@ Contributor guidelines
 .. _installation: https://sphinx-no-pragma.readthedocs.io/#installation
 .. _features: https://sphinx-no-pragma.readthedocs.io/#features
 .. _prerequisites: https://sphinx-no-pragma.readthedocs.io/#prerequisites
-.. _usage: https://sphinx-no-pragma.readthedocs.io/en/latest/usage.html
+.. _demo: https://sphinx-no-pragma.readthedocs.io/en/latest/demo.html
 
 Developer prerequisites
 -----------------------
@@ -91,30 +91,14 @@ You can contribute to the project by making a `pull request`_.
 For example:
 
 - To fix documentation typos.
-- To improve documentation (for instance, to add new recipe or fix
-  an existing recipe that doesn't seem to work).
-- To introduce a new feature (for instance, add support for a non-supported
-  file type).
-
-**Good to know:**
-
-- This library consists of a single ``sphinx_no_pragma.py`` module. That module is
-  dependency free, self-contained (includes all tests) and portable.
-  Do not submit pull requests splitting the ``fake.py`` module into small
-  parts.
-- Some tests contain simplified implementation of existing libraries (Django
-  ORM, TortoiseORM, SQLAlchemy). If you need to add integration tests for
-  existing functionality, you can add the relevant code and requirements
-  to the examples, along with tests. Currently, all integration tests
-  are running in the CI against the latest version of Python.
+- To improve documentation (for instance, to add new rule or fix
+  an existing rule that doesn't seem to work).
+- To introduce a new feature.
 
 **General list to go through:**
 
 - Does your change require documentation update?
 - Does your change require update to tests?
-- Does your change rely on third-party package or a cloud based service?
-  If so, please consider turning it into a dedicated standalone package,
-  since this library is dependency free (and will always stay so).
 
 **When fixing bugs (in addition to the general list):**
 
@@ -123,7 +107,7 @@ For example:
 **When adding a new feature (in addition to the general list):**
 
 - Make sure to update the documentation (check whether the `installation`_,
-  `features`_ or `usage`_ require changes).
+  `features`_ or `demo`_ require changes).
 
 Questions
 ---------

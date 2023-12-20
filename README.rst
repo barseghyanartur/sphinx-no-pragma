@@ -59,7 +59,7 @@ some say, "testing is everything!" and yet there will be someone else who
 will jump in with "write clean code! black, isort, mypy and ruff everywhere!"
 
 And yet there's you, who want to be good and write a better package, because
-there's a generic problem that needs to be solved, and you know how, you want 
+there's a generic problem that needs to be solved, and you know how, you want
 to share it with the world. You also want to assure or at least make an effort
 in making your project developer friendly, attractive for making contributions,
 which eventually leads to continuous improvement and make it live long(er).
@@ -77,16 +77,16 @@ So, combining the best practices, you:
 Then you invest your time in making sure all your code looks correct and fix
 the never-ending `MyPy`_ issues.
 
-Then you need to make a small change, which unfortunately, among other, 
-requires altering the examples code. You need to change the examples, the 
-docs, the tests and the examples tests. However, you also need to push the 
-change quickly. As many times before, you skip documentation update, 
+Then you need to make a small change, which unfortunately, among other,
+requires altering the examples code. You need to change the examples, the
+docs, the tests and the examples tests. However, you also need to push the
+change quickly. As many times before, you skip documentation update,
 leaving it for "another time".
 
 By that time you discover that code maintenance is a hell. You fix everything,
-tests pass you're happy to push, by then `MyPy`_ starts to nag about issues 
-you have no idea how to solve and by that moment you don't care about them. 
-You're sick of it and start using pragma comments to silence the errors, 
+tests pass you're happy to push, by then `MyPy`_ starts to nag about issues
+you have no idea how to solve and by that moment you don't care about them.
+You're sick of it and start using pragma comments to silence the errors,
 leaving the fix for another day. You maintenance involves a lot of
 copy-pasting from one place to another (examples, tests, documentation).
 
