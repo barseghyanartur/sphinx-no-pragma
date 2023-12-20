@@ -11,7 +11,7 @@ sphinx-no-pragma
 
 .. _sphinx-no-pragma: https://github.com/barseghyanartur/sphinx-no-pragma/
 .. _Read the Docs: http://sphinx-no-pragma.readthedocs.io/
-.. _Usage: http://sphinx-no-pragma.readthedocs.io/en/latest/usage.html
+.. _Demo: http://sphinx-no-pragma.readthedocs.io/en/latest/demo.html
 .. _Contributor guidelines: https://sphinx-no-pragma.readthedocs.io/en/latest/contributor_guidelines.html
 
 **Improve developer experience**:
@@ -44,8 +44,15 @@ sphinx-no-pragma
     :target: https://coveralls.io/github/barseghyanartur/sphinx-no-pragma?branch=main
     :alt: Coverage
 
-`sphinx-no-pragma`_ is a standalone, portable `Sphinx`_ extension for
-stripping pragma comments from source code used in documentation.
+**TL;DR**
+
+`sphinx-no-pragma`_ is a `Sphinx`_ extension for stripping pragma comments
+from source code used in documentation.
+
+If that's all you need to know to move forward, jump right to the
+`installation`_. Otherwise, read further.
+
+----
 
 Some say, "documentation is the king". Others argue - "no, demos are". While
 some say, "testing is everything!" and yet there will be someone else who
@@ -63,7 +70,8 @@ So, combining the best practices, you:
 - Write awesome docs with usage examples (by eventually repeating yourself,
   copying things from your actual code examples).
 - Write tests for your code. Then you realize it's good to test the examples
-  too.
+  too. Eventually, you have now almost the same code in 3 places: tests,
+  examples and docs.
 - Introduce linters and `MyPy`_.
 
 Then you invest your time in making sure all your code looks correct and fix
@@ -79,16 +87,21 @@ By that time you discover that code maintenance is a hell. You fix everything,
 tests pass you're happy to push, by then `MyPy`_ starts to nag about issues 
 you have no idea how to solve and by that moment you don't care about them. 
 You're sick of it and start using pragma comments to silence the errors, 
-leaving the fix for another day.
+leaving the fix for another day. You maintenance involves a lot of
+copy-pasting from one place to another (examples, tests, documentation).
 
 Does this sound familiar?
 
 ----
 
-What if I tell you that you are actually just good with making sure your
-examples work and are covered with tests. Your documentation can directly
-include code from your examples (code that is tested!). You don't need to
-choose or balance between readability, explainability and low-maintenance.
+What if I tell you that actually a couple of steps can be taken out.
+Namely, that you can use your example code directly in your documentation,
+using ``.. literalinclude::`` directive of `Sphinx`_. That part has already
+been well covered in `jsphinx`_ project (JavaScript primarily). However,
+what `jsphinx`_ didn't solve is presence of pragma comments in your
+documentation. This project does take care of that part.
+You don't need to choose or balance between readability, explainability and
+low-maintenance.
 
 Written by lazy developer for lazy developers to improve developer experience
 in writing low-maintenance code.
@@ -104,21 +117,9 @@ Python 3.8+
 
 Installation
 ============
-pip
----
-
 .. code-block:: sh
 
     pip install sphinx-no-pragma
-
-Download and copy
------------------
-``sphinx_no_pragma.py`` is the sole, self-contained module of the package.
-It includes tests too. If it's more convenient to you, you could simply
-download the ``sphinx_no_pragma.py`` module and include it in your repository.
-
-Since tests are included, it won't have a negative impact on your test
-coverage (you might need to apply tweaks to your coverage configuration).
 
 Documentation
 =============
@@ -127,7 +128,6 @@ Documentation
 
 Usage example
 =============
-
 In order to move forward, you first need to get educate yourself a little on
 `Sphinx`_'s directives. Namely the ``.. literalinclude::`` and ``:download:``.
 For that, first read the `jsphinx`_ documentation.
@@ -217,7 +217,7 @@ Then include it in your docs as follows:
 Now, rendered, your code will not contain `# type: ignore` or `# noqa` pragma
 comments.
 
-See `usage`_ for a demo. Click on the `See the full example here` link to see
+See the `demo`_. Click on the `See the full example here` link to see
 the original code.
 
 Tests
