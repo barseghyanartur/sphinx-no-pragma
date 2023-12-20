@@ -9,7 +9,7 @@ Contents:
    :maxdepth: 2
 
    index
-   usage
+   demo
    security
    contributor_guidelines
    code_of_conduct

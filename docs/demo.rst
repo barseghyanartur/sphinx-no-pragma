@@ -1,4 +1,4 @@
-Usage
+Demo
 =====
 **example_1.py**
 

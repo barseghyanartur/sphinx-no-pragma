@@ -157,6 +157,7 @@ addopts = [
 ]
 testpaths = [
     "sphinx_no_pragma.py",
+    "test*.py",
 ]
 
 [tool.coverage.run]
