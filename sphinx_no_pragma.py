@@ -4,7 +4,7 @@ https://github.com/barseghyanartur/sphinx-no-pragma/
 
 from docutils import nodes
 from sphinx.directives.code import LiteralInclude
-from tests import TestNoPragmaLiteralInclude
+
 __title__ = "sphinx-no-pragma"
 __version__ = "0.1"
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
