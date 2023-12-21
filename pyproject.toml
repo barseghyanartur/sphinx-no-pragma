@@ -19,7 +19,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
+#    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -27,7 +27,7 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Topic :: Software Development",
 ]
-keywords = ["fake data", "test data"]
+keywords = ["sphinx", "documentation", "pragma"]
 
 [project.urls]
 "Homepage" = "https://github.com/barseghyanartur/sphinx-no-pragma/"

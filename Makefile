@@ -56,6 +56,7 @@ clean:
 	find . -type f -name "*.py,cover" -exec rm -f {} \;
 	find . -type f -name "*.orig" -exec rm -f {} \;
 	find . -type d -name "__pycache__" -exec rm -rf {} \; -prune
+	rm -rf sphinx_no_pragma.egg-info/
 	rm -rf build/
 	rm -rf dist/
 	rm -rf .cache/
