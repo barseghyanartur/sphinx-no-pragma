@@ -1,6 +1,6 @@
 Demo
 =====
-**example_1.py**
+*Filename: example_1.py*
 
 .. container:: jsphinx-download
 
