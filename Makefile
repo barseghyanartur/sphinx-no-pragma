@@ -14,6 +14,9 @@ rebuild_docs:
 	cp docs/index.rst.distrib docs/index.rst
 	cp docs/conf.py.distrib docs/conf.py
 
+pre-commit:
+	pre-commit run --all-files
+
 # Format code using Black
 black:
 	source $(VENV) && black .
