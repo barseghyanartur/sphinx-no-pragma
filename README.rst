@@ -87,7 +87,7 @@ By that time you discover that code maintenance is a hell. You fix everything,
 tests pass you're happy to push, by then `MyPy`_ starts to nag about issues
 you have no idea how to solve and by that moment you don't care about them.
 You're sick of it and start using pragma comments to silence the errors,
-leaving the fix for another day. You maintenance involves a lot of
+leaving the fix for another day. Your maintenance work involves a lot of
 copy-pasting from one place to another (examples, tests, documentation).
 
 Does this sound familiar?
@@ -145,7 +145,7 @@ strips all pragma comments from your code that goes into documentation.
 
 Sphinx configuration
 --------------------
-**docs/conf.py**
+*Filename: docs/conf.py*
 
 .. code-block:: python
 
@@ -157,7 +157,7 @@ Sphinx configuration
 
 Code example
 ------------
-**examples/example_1.py**
+*Filename: examples/example_1.py*
 
 .. code-block:: python
 
@@ -202,6 +202,8 @@ Either use ``html_extra_path = ["examples"]`` or make a symlink to
 ``examples/example_1.py`` from ``docs/_static``.
 
 Then include it in your docs as follows:
+
+*Filename: example.rst*
 
 .. code-block:: rst
 
