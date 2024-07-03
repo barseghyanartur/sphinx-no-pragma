@@ -6,7 +6,7 @@ from docutils import nodes
 from sphinx.directives.code import LiteralInclude
 
 __title__ = "sphinx-no-pragma"
-__version__ = "0.1"
+__version__ = "0.1.1"
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2023 Artur Barseghyan"
 __license__ = "MIT"

@@ -2,7 +2,7 @@
 name = "sphinx-no-pragma"
 description = "Strip pragmas from your docs."
 readme = "README.rst"
-version = "0.1"
+version = "0.1.1"
 dependencies = [
     "docutils",
     "sphinx",
@@ -36,7 +36,6 @@ keywords = ["sphinx", "documentation", "pragma"]
 "Source Code" = "https://github.com/barseghyanartur/sphinx-no-pragma/"
 "Changelog" = "https://sphinx-no-pragma.readthedocs.io/en/latest/changelog.html"
 
-
 [project.optional-dependencies]
 all = ["sphinx-no-pragma[dev,test,docs]"]
 dev = [
@@ -46,17 +45,21 @@ dev = [
     "ipython",
     "isort",
     "mypy",
-    "pip-tools",
     "ruff",
     "twine",
+    "uv",
 ]
 test = [
     "pytest",
     "pytest-cov",
+    "pytest-rst",
 ]
 docs = [
     "sphinx-rtd-theme>=1.3.0",
 ]
+
+[tool.setuptools]
+py-modules = ["sphinx_no_pragma"]
 
 [tool.black]
 line-length = 80
