@@ -25,15 +25,15 @@ jobs:
 #          - "3.8"
 #          - "3.7"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install detect-secrets
-        run: pip install --no-cache-dir detect-secrets doc8 isort==5.11.5
+        run: pip install --no-cache-dir detect-secrets doc8 isort
       - name: Run pre-commit
-        uses: pre-commit/action@v3.0.0
+        uses: pre-commit/action@v3.0.1
 
   # *************************************
   # **************** Tests **************
@@ -51,17 +51,17 @@ jobs:
         #          - Windows
         #          - MacOs
         python-version:
-#          - "3.12"
+          - "3.13"
+          - "3.12"
           - "3.11"
           - "3.10"
           - "3.9"
-          - "3.8"
     steps:
       - name: Clean-up
         run: sudo apt clean && sudo apt autoclean && sudo rm -rf /tmp/* && sudo rm -rf /usr/share/dotnet && sudo rm -rf /opt/ghc && sudo rm -rf "/usr/local/share/boost" && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
