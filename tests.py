@@ -1,5 +1,5 @@
 """
-https://github.com/barseghyanartur/jsphinx/
+https://github.com/barseghyanartur/sphinx-no-pragma/
 """
 
 import shutil
@@ -10,7 +10,7 @@ from sphinx.application import Sphinx
 from sphinx_no_pragma import DEFAULT_IGNORE_COMMENTS_ENDINGS
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2023 Artur Barseghyan"
+__copyright__ = "2023-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("TestNoPragmaLiteralInclude",)
 
