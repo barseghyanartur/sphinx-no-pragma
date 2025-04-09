@@ -24,6 +24,8 @@ are used for versioning (schema follows below):
 - Add ``user_ignore_comments_endings`` configuration options for user-defined
   additional comments endings to ignore.
 - Document configuration options.
+- Start testing against Python 3.12 and 3.13.
+- Stop testing against Python 3.8.
 
 0.1.1
 -----
