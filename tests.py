@@ -1,5 +1,5 @@
 """
-https://github.com/barseghyanartur/jsphinx/
+https://github.com/barseghyanartur/sphinx-no-pragma/
 """
 
 import shutil
@@ -7,9 +7,10 @@ import unittest
 from pathlib import Path
 
 from sphinx.application import Sphinx
+from sphinx_no_pragma import DEFAULT_IGNORE_COMMENTS_ENDINGS
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2023 Artur Barseghyan"
+__copyright__ = "2023-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("TestNoPragmaLiteralInclude",)
 
@@ -40,8 +41,9 @@ class TestNoPragmaLiteralInclude(unittest.TestCase):
         content = demo_html_path.read_text()
 
         # Check for the absence of pragma comments
-        self.assertNotIn("# type: ignore", content)
-        self.assertNotIn("# noqa", content)
+        for ignore_comment_ending in DEFAULT_IGNORE_COMMENTS_ENDINGS:
+            with self.subTest(ignore_comment_ending):
+                self.assertNotIn(ignore_comment_ending, content)
 
     def tearDown(self):
         # Clean up the build directory

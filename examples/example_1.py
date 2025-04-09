@@ -36,3 +36,39 @@ length = len(obj)  # type: ignore
 print(
     f"The length of the object, a dynamically typed one, is just {length}"
 )  # noqa
+
+# --- Additional tests for ignore markers ---
+
+# Test noqa
+print("Test noqa")  # noqa
+
+# Test type checkers
+print("Test type: ignore")  # type: ignore
+
+# Test coverage and similar inline markers:
+print("Test no cover")  # pragma: no cover
+print("Test no branch")  # pragma: no branch
+
+# Formatting control markers:
+# fmt: off
+print("Test fmt skip block - unformatted text")  # fmt: skip
+# fmt: on
+print("This line should be formatted normally.")  # fmt: on
+
+# YAPF markers:
+print("Test yapf disable")  # yapf: disable
+print("Test yapf enable")  # yapf: enable
+
+# Pylint markers:
+print("Test pylint disable")  # pylint: disable=unused-variable
+print("Test pylint enable")  # pylint: enable=unused-variable
+
+# Flake8 marker:
+print("Test flake8 noqa")  # flake8: noqa: E501
+
+# IDE-specific suppression marker:
+print("Test noinspection directive")  # noinspection PyTypeChecker
+
+# Security allowlisting markers:
+print("Test allowlist secret")  # pragma: allowlist secret
+print("Test NOSONAR")  # pragma: NOSONAR
