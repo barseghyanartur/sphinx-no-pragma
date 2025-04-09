@@ -68,7 +68,7 @@ html_js_files = [
     f"{prismjs_base}/plugins/autoloader/prism-autoloader.min.js",
     f"{prismjs_base}/plugins/toolbar/prism-toolbar.min.js",
     f"{prismjs_base}/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js",
-    "https://cdn.jsdelivr.net/gh/barseghyanartur/jsphinx@1.3.4/src/js/download_adapter.js",
+    "https://cdn.jsdelivr.net/gh/barseghyanartur/jsphinx/src/js/download_adapter.js",
 ]
 
 # -- Options for todo extension ----------------------------------------------
@@ -77,5 +77,23 @@ html_js_files = [
 todo_include_todos = True
 
 # -- sphinx-no-pragma configuration ------------------------------------------
-# Add any endings you want to remove
-# ignore_comments_endings = ["# type: ignore", "# noqa"]
+# Override the default endings
+# ignore_comments_endings = [
+#     "# type: ignore",
+#     "# noqa",
+#     "# pragma: no cover",
+#     "# pragma: no branch",
+#     "# fmt: off",
+#     "# fmt: on",
+#     "# fmt: skip",
+#     "# yapf: disable",
+#     "# yapf: enable",
+#     "# pylint: disable",
+#     "# pylint: enable",
+#     "# flake8: noqa",
+#     "# noinspection",
+#     "# pragma: allowlist secret",
+#     "# pragma: NOSONAR",
+# ]
+# Set user defined endings
+user_ignore_comments_endings = ["# [start]"]

@@ -18,7 +18,7 @@ are used for versioning (schema follows below):
 
 0.1.2
 -----
-2024-07-03
+2025-04-10
 
 - Extend ``ignore_comments_endings`` with other most common pragma options.
 - Add ``user_ignore_comments_endings`` configuration options for user-defined

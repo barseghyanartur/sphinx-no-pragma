@@ -2,7 +2,6 @@
 https://github.com/barseghyanartur/sphinx-no-pragma/
 """
 import re
-import logging
 from copy import deepcopy
 
 from docutils import nodes
@@ -18,8 +17,6 @@ __all__ = (
     "NoPragmaLiteralInclude",
     "setup",
 )
-
-LOGGER = logging.getLogger(__name__)
 
 DEFAULT_IGNORE_COMMENTS_ENDINGS = [
     "# type: ignore",
@@ -65,11 +62,9 @@ class NoPragmaLiteralInclude(LiteralInclude):
             if isinstance(node, nodes.literal_block):
                 # Modify lines by removing specified endings
                 lines = node.rawsource.splitlines()
-                print(lines)
                 filtered_lines = [
                     self.remove_endings(line, ignore_endings) for line in lines
                 ]
-
                 # Update the node content
                 node.rawsource = "\n".join(filtered_lines)
                 node[:] = [nodes.Text("\n".join(filtered_lines))]
@@ -86,9 +81,10 @@ class NoPragmaLiteralInclude(LiteralInclude):
         It repeatedly removes the matched pattern for each ending.
         """
         for ending in endings:
-            # Build a regex pattern: escape the given ending and allow an optional
-            # colon and error codes, plus trailing whitespace until the end of the line.
-            pattern = re.escape(ending) + r"(?:\s*:\s*\S+)?\s*$"
+            # Build a regex pattern: escape the given ending and allow an
+            # optional colon and error codes, plus trailing whitespace until
+            # the end of the line.
+            pattern = re.escape(ending) + r"(?:\s*[:=]\s*\S+|\s+\S+)?\s*$"
             # Keep removing the marker until no match is found.
             while re.search(pattern, line):
                 line = re.sub(pattern, "", line).rstrip()
