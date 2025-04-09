@@ -1,5 +1,5 @@
 # Update version ONLY here
-VERSION := 0.1.1
+VERSION := 0.1.2
 SHELL := /bin/bash
 # Makefile for project
 VENV := ~/.virtualenvs/sphinx-no-pragma/bin/activate
@@ -34,7 +34,7 @@ ruff:
 
 # Serve the built docs on port 5000
 serve_docs:
-	source $(VENV) && cd builddocs && python -m http.server 5000
+	source $(VENV) && python -m http.server 5000 --directory builddocs/
 
 # Install the project
 install:

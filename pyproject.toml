@@ -2,7 +2,7 @@
 name = "sphinx-no-pragma"
 description = "Strip pragmas from your docs."
 readme = "README.rst"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
     "docutils",
     "sphinx",
@@ -142,7 +142,7 @@ ignore-path = [
 ]
 
 [tool.pytest.ini_options]
-minversion = "0.6.5"
+minversion = "0.1.2"
 addopts = [
     "-ra",
     "-vvv",
