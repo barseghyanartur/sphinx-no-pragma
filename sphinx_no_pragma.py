@@ -2,6 +2,7 @@
 https://github.com/barseghyanartur/sphinx-no-pragma/
 """
 import re
+import logging
 from copy import deepcopy
 
 from docutils import nodes
@@ -17,6 +18,8 @@ __all__ = (
     "NoPragmaLiteralInclude",
     "setup",
 )
+
+LOGGER = logging.getLogger(__name__)
 
 DEFAULT_IGNORE_COMMENTS_ENDINGS = [
     "# type: ignore",
@@ -62,6 +65,7 @@ class NoPragmaLiteralInclude(LiteralInclude):
             if isinstance(node, nodes.literal_block):
                 # Modify lines by removing specified endings
                 lines = node.rawsource.splitlines()
+                print(lines)
                 filtered_lines = [
                     self.remove_endings(line, ignore_endings) for line in lines
                 ]
@@ -76,16 +80,17 @@ class NoPragmaLiteralInclude(LiteralInclude):
     def remove_endings(self, line, endings):
         """Remove from the line any trailing ignore markers.
 
-        For each ending provided, the function uses a regex pattern to match
+        For each ending provided, this function uses a regex pattern to match
         the literal ending, optionally followed by a colon and error codes,
-        and any extra whitespace to the end of the line.
+        and any extra whitespace until the end of the line.
+        It repeatedly removes the matched pattern for each ending.
         """
         for ending in endings:
-            # Build a regex pattern: escape the given ending and allow an
-            # optional colon followed by codes.
+            # Build a regex pattern: escape the given ending and allow an optional
+            # colon and error codes, plus trailing whitespace until the end of the line.
             pattern = re.escape(ending) + r"(?:\s*:\s*\S+)?\s*$"
-            if re.search(pattern, line):
-                # Remove the matched pattern from the end of the line
+            # Keep removing the marker until no match is found.
+            while re.search(pattern, line):
                 line = re.sub(pattern, "", line).rstrip()
         return line
 

@@ -21,7 +21,7 @@ try:
 except ImportError:
     version = "0.1"
     project = "sphinx-no-pragma"
-    copyright = "2023, Artur Barseghyan <artur.barseghyan@gmail.com>"
+    copyright = "2023-2025, Artur Barseghyan <artur.barseghyan@gmail.com>"
     author = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # -- General configuration ---------------------------------------------------
@@ -31,11 +31,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "sphinx.ext.todo",
-    "sphinx_no_pragma",
+    "sphinx_no_pragma",  # Important
 ]
-
-# Add any endings you want to remove
-ignore_comments_endings = ["# type: ignore", "# noqa"]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -74,8 +71,11 @@ html_js_files = [
     "https://cdn.jsdelivr.net/gh/barseghyanartur/jsphinx@1.3.4/src/js/download_adapter.js",
 ]
 
-
 # -- Options for todo extension ----------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/todo.html#configuration
 
 todo_include_todos = True
+
+# -- sphinx-no-pragma configuration ------------------------------------------
+# Add any endings you want to remove
+# ignore_comments_endings = ["# type: ignore", "# noqa"]

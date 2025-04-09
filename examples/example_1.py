@@ -46,7 +46,7 @@ print("Test noqa")  # noqa
 print("Test type: ignore")  # type: ignore
 
 # Test coverage and similar inline markers:
-print("Test no cover")  # pragma: no cover
+print("Test no cover") # pragma: no cover
 print("Test no branch")  # pragma: no branch
 
 # Formatting control markers:
