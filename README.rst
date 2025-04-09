@@ -145,6 +145,8 @@ strips all pragma comments from your code that goes into documentation.
 
 Sphinx configuration
 --------------------
+Essential configuration
+~~~~~~~~~~~~~~~~~~~~~~~
 *Filename: docs/conf.py*
 
 .. code-block:: python
@@ -153,6 +155,59 @@ Sphinx configuration
         # ... other extensions
         "sphinx_no_pragma",
         # ... other extensions
+    ]
+
+Fine-tuning what to strip
+~~~~~~~~~~~~~~~~~~~~~~~~~
+By default, the following markers are stripped:
+
+- ``# type: ignore``
+- ``# noqa``
+- ``# pragma: no cover``
+- ``# pragma: no branch``
+- ``# fmt: off``
+- ``# fmt: on``
+- ``# fmt: skip``
+- ``# yapf: disable``
+- ``# yapf: enable``
+- ``# pylint: disable``
+- ``# pylint: enable``
+- ``# flake8: noqa``
+- ``# noinspection``
+- ``# pragma: allowlist secret``
+- ``# pragma: NOSONAR``
+
+If you want to alter the default behaviour, define
+a ``ignore_comments_endings`` variable in your Sphinx configuration
+file (``docs/conf.py``) as shown below:
+
+*Filename: docs/conf.py*
+
+.. code-block:: python
+
+    ignore_comments_endings = [
+        "# type: ignore",
+        "# noqa",
+        "# pragma: no cover",
+        "# pragma: no branch",
+        "# fmt: off",
+        "# fmt: skip",
+        "# yapf: disable",
+        "# pylint: disable",
+        "# flake8: noqa",
+        "# noinspection",
+    ]
+
+If you want to simply extend the list of markers, use another variable
+to define your own list, that would be appended to the default one.
+
+*Filename: docs/conf.py*
+
+.. code-block:: python
+
+    # Set user defined endings
+    user_ignore_comments_endings = [
+        "# [start]",
     ]
 
 Code example
