@@ -1,6 +1,7 @@
 """
 https://github.com/barseghyanartur/sphinx-no-pragma/
 """
+
 import re
 from copy import deepcopy
 
@@ -35,6 +36,7 @@ DEFAULT_IGNORE_COMMENTS_ENDINGS = [
     "# pragma: allowlist secret",
     "# pragma: NOSONAR",
 ]
+
 
 class NoPragmaLiteralInclude(LiteralInclude):
     def run(self):
@@ -98,9 +100,7 @@ def setup(app):
         DEFAULT_IGNORE_COMMENTS_ENDINGS,
         "env",
     )
-    app.add_config_value(
-        "user_ignore_comments_endings", [], "env"
-    )
+    app.add_config_value("user_ignore_comments_endings", [], "env")
 
     return {
         "version": "0.1",
