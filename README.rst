@@ -150,6 +150,7 @@ Essential configuration
 *Filename: docs/conf.py*
 
 .. code-block:: python
+    :name: test_docs_conf_extensions
 
     extensions = [
         # ... other extensions
@@ -184,6 +185,7 @@ file (``docs/conf.py``) as shown below:
 *Filename: docs/conf.py*
 
 .. code-block:: python
+    :name: test_docs_conf_ignore_comments_endings
 
     ignore_comments_endings = [
         "# type: ignore",
@@ -204,6 +206,7 @@ to define your own list, that would be appended to the default one.
 *Filename: docs/conf.py*
 
 .. code-block:: python
+    :name: test_docs_conf_user_ignore_comments_endings
 
     # Set user defined endings
     user_ignore_comments_endings = [
@@ -215,6 +218,7 @@ Code example
 *Filename: examples/example_1.py*
 
 .. code-block:: python
+    :name: test_examples_example_1
 
     from typing import Any, Optional
 
