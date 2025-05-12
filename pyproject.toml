@@ -159,9 +159,7 @@ addopts = [
 testpaths = [
     "sphinx_no_pragma.py",
     "test*.py",
-    "*.rst",
     "**/*.rst",
-    "*.md",
     "**/*.md",
 ]
 
