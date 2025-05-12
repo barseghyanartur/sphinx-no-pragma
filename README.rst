@@ -269,6 +269,7 @@ Then include it in your docs as follows:
     .. container:: jsphinx-download
 
     .. literalinclude:: _static/example_1.py
+        :name: test_example_1
         :language: python
         :lines: 1-
 
