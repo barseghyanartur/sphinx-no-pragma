@@ -1,0 +1,21 @@
+sphinx_no_pragma module
+***********************
+
+https://github.com/barseghyanartur/sphinx-no-pragma/
+
+class sphinx_no_pragma.NoPragmaLiteralInclude(name, arguments, options, content, lineno, content_offset, block_text, state, state_machine)
+
+   Bases: "LiteralInclude"
+
+   remove_endings(line, endings)
+
+      Remove from the line any trailing ignore markers.
+
+      For each ending provided, this function uses a regex pattern to
+      match the literal ending, optionally followed by a colon and
+      error codes, and any extra whitespace until the end of the line.
+      It repeatedly removes the matched pattern for each ending.
+
+   run()
+
+sphinx_no_pragma.setup(app)

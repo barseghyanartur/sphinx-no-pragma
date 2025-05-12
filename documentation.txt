@@ -1,0 +1,90 @@
+Project documentation
+*********************
+
+Contents:
+
+
+Table of Contents
+^^^^^^^^^^^^^^^^^
+
+* Project documentation
+
+* sphinx-no-pragma
+
+  * Features
+
+  * Prerequisites
+
+  * Installation
+
+  * Documentation
+
+  * Usage example
+
+  * Tests
+
+  * License
+
+  * Support
+
+  * Author
+
+  * Project documentation
+
+* Demo
+
+* Security Policy
+
+  * Reporting a Vulnerability
+
+  * Supported Versions
+
+* Contributor guidelines
+
+  * Developer prerequisites
+
+  * Code standards
+
+  * Requirements
+
+  * Virtual environment
+
+  * Documentation
+
+  * Testing
+
+  * Pull requests
+
+  * Questions
+
+  * Issues
+
+* Contributor Covenant Code of Conduct
+
+  * Our Pledge
+
+  * Our Standards
+
+  * Enforcement Responsibilities
+
+  * Scope
+
+  * Enforcement
+
+  * Enforcement Guidelines
+
+  * Attribution
+
+* Release history and notes
+
+  * 0.1.2
+
+  * 0.1.1
+
+  * 0.1
+
+* Package
+
+  * sphinx_no_pragma module
+
+* Indices and tables

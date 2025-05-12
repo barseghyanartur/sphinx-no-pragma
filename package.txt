@@ -1,0 +1,22 @@
+Package
+*******
+
+* sphinx_no_pragma module
+
+  * "NoPragmaLiteralInclude"
+
+    * "NoPragmaLiteralInclude.remove_endings()"
+
+    * "NoPragmaLiteralInclude.run()"
+
+  * "setup()"
+
+
+Indices and tables
+******************
+
+* Index
+
+* Module Index
+
+* Search Page

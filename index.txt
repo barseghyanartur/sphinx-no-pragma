@@ -1,0 +1,407 @@
+sphinx-no-pragma
+****************
+
+**Improve developer experience**:
+
+* Write better docs.
+
+* Do not repeat yourself.
+
+* Assure code low-maintenance.
+
+[image: PyPI Version][image][image: Supported Python
+versions][image][image: Build Status][image][image: Documentation
+Status][image][image: llms.txt - documentation for LLMs][image][image:
+MIT][image][image: Coverage][image]
+
+**TL;DR**
+
+sphinx-no-pragma is a Sphinx extension for stripping pragma comments
+from source code used in documentation.
+
+If that's all you need to know to move forward, jump right to the
+installation. Otherwise, read further.
+
+======================================================================
+
+Some say, "documentation is the king". Others argue - "no, demos are".
+While some say, "testing is everything!" and yet there will be someone
+else who will jump in with "write clean code! black, isort, mypy and
+ruff everywhere!"
+
+And yet there's you, who want to be good and write a better package,
+because there's a generic problem that needs to be solved, and you
+know how, you want to share it with the world. You also want to assure
+or at least make an effort in making your project developer friendly,
+attractive for making contributions, which eventually leads to
+continuous improvement and make it live long(er).
+
+So, combining the best practices, you:
+
+* Introduce examples in your repository to make it easier to start
+  with.
+
+* Write awesome docs with usage examples (by eventually repeating
+  yourself, copying things from your actual code examples).
+
+* Write tests for your code. Then you realize it's good to test the
+  examples too. Eventually, you have now almost the same code in 3
+  places: tests, examples and docs.
+
+* Introduce linters and MyPy.
+
+Then you invest your time in making sure all your code looks correct
+and fix the never-ending MyPy issues.
+
+Then you need to make a small change, which unfortunately, among
+other, requires altering the examples code. You need to change the
+examples, the docs, the tests and the examples tests. However, you
+also need to push the change quickly. As many times before, you skip
+documentation update, leaving it for "another time".
+
+By that time you discover that code maintenance is a hell. You fix
+everything, tests pass you're happy to push, by then MyPy starts to
+nag about issues you have no idea how to solve and by that moment you
+don't care about them. You're sick of it and start using pragma
+comments to silence the errors, leaving the fix for another day. Your
+maintenance work involves a lot of copy-pasting from one place to
+another (examples, tests, documentation).
+
+Does this sound familiar?
+
+======================================================================
+
+What if I tell you that actually a couple of steps can be taken out.
+Namely, that you can use your example code directly in your
+documentation, using ".. literalinclude::" directive of Sphinx. That
+part has already been well covered in jsphinx project (JavaScript
+primarily). However, what jsphinx didn't solve is presence of pragma
+comments in your documentation. This project does take care of that
+part. You don't need to choose or balance between readability,
+explainability and low-maintenance.
+
+Written by lazy developer for lazy developers to improve developer
+experience in writing low-maintenance code.
+
+
+Features
+========
+
+* Accurately stips out pragma comments from your source code that you
+  include in your documentation.
+
+
+Prerequisites
+=============
+
+Python 3.9+
+
+
+Installation
+============
+
+   pip install sphinx-no-pragma
+
+
+Documentation
+=============
+
+* Documentation is available on Read the Docs.
+
+* For guidelines on contributing check the Contributor guidelines.
+
+
+Usage example
+=============
+
+In order to move forward, you first need to get educate yourself a
+little on Sphinx's directives. Namely the ".. literalinclude::" and
+":download:". For that, first read the jsphinx documentation.
+
+But there might be a little problem with that. Of course you might be
+lucky and have zero pragma comments in your code (no "# noqa", no "#
+type: ignore", etc). But more often, you get at least a couple of
+these. Your perfectionist nature doesn't easily allow you to let them
+be part of your concise, beautiful documentation. Cursing me for
+earlier advices, you start to replace your DRY documentation part with
+copy-pasted examples.
+
+This is where this package jumps in. It simply is a Sphinx extension
+that strips all pragma comments from your code that goes into
+documentation.
+
+
+Sphinx configuration
+--------------------
+
+
+Essential configuration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+*Filename: docs/conf.py*
+
+   extensions = [
+       # ... other extensions
+       "sphinx_no_pragma",
+       # ... other extensions
+   ]
+
+
+Fine-tuning what to strip
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, the following markers are stripped:
+
+* "# type: ignore"
+
+* "# noqa"
+
+* "# pragma: no cover"
+
+* "# pragma: no branch"
+
+* "# fmt: off"
+
+* "# fmt: on"
+
+* "# fmt: skip"
+
+* "# yapf: disable"
+
+* "# yapf: enable"
+
+* "# pylint: disable"
+
+* "# pylint: enable"
+
+* "# flake8: noqa"
+
+* "# noinspection"
+
+* "# pragma: allowlist secret"
+
+* "# pragma: NOSONAR"
+
+If you want to alter the default behaviour, define a
+"ignore_comments_endings" variable in your Sphinx configuration file
+("docs/conf.py") as shown below:
+
+*Filename: docs/conf.py*
+
+   ignore_comments_endings = [
+       "# type: ignore",
+       "# noqa",
+       "# pragma: no cover",
+       "# pragma: no branch",
+       "# fmt: off",
+       "# fmt: skip",
+       "# yapf: disable",
+       "# pylint: disable",
+       "# flake8: noqa",
+       "# noinspection",
+   ]
+
+If you want to simply extend the list of markers, use another variable
+to define your own list, that would be appended to the default one.
+
+*Filename: docs/conf.py*
+
+   # Set user defined endings
+   user_ignore_comments_endings = [
+       "# [start]",
+   ]
+
+
+Code example
+------------
+
+*Filename: examples/example_1.py*
+
+   from typing import Any, Optional
+
+   class ThirdPartyLibrary:
+       @staticmethod
+       def get_dynamic_object() -> Any:
+           # Returns an object whose type is not known at compile time
+           return "a string"  # In reality, this could be any type
+
+
+   # Usage of the third-party library
+   obj = ThirdPartyLibrary.get_dynamic_object()
+
+   # Attempt to use the object as a string, even though its type is 'Any'
+   length = len(obj)  # type: ignore
+
+   # Deliberately long line to violate PEP 8 line length rule, suppressed with noqa
+   print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
+
+Given that this is your code structure:
+
+   ├── examples
+   │  └── example_1.py
+   ├── docs
+   │  ├── conf.py
+   │  ├── index.rst
+   │  ├── Makefile
+   │  ├── _static
+   │  │  └── example_1.py
+   │  └── usage.rst
+   ├── LICENSE
+   ├── Makefile
+   ├── pyproject.toml
+   ├── README.rst
+   └── sphinx_no_pragma.py
+
+Either use "html_extra_path = ["examples"]" or make a symlink to
+"examples/example_1.py" from "docs/_static".
+
+Then include it in your docs as follows:
+
+*Filename: example.rst*
+
+   .. container:: jsphinx-download
+
+   .. literalinclude:: _static/example_1.py
+       :name: test_example_1
+       :language: python
+       :lines: 1-
+
+   *See the full example*
+   :download:`here <_static/example_1.py>`
+
+Now, rendered, your code will not contain *# type: ignore* or *# noqa*
+pragma comments.
+
+See the demo. Click on the *See the full example here* link to see the
+original code.
+
+
+Tests
+=====
+
+Run the tests with unittest:
+
+   python -m unittest sphinx_no_pragma.py
+
+Or pytest:
+
+   pytest
+
+
+License
+=======
+
+MIT
+
+
+Support
+=======
+
+For security issues contact me at the e-mail given in the Author
+section.
+
+For overall issues, go to GitHub.
+
+
+Author
+======
+
+Artur Barseghyan <artur.barseghyan@gmail.com>
+
+
+Project documentation
+=====================
+
+Contents:
+
+
+Table of Contents
+^^^^^^^^^^^^^^^^^
+
+* sphinx-no-pragma
+
+  * Features
+
+  * Prerequisites
+
+  * Installation
+
+  * Documentation
+
+  * Usage example
+
+    * Sphinx configuration
+
+      * Essential configuration
+
+      * Fine-tuning what to strip
+
+    * Code example
+
+  * Tests
+
+  * License
+
+  * Support
+
+  * Author
+
+  * Project documentation
+
+* Demo
+
+* Security Policy
+
+  * Reporting a Vulnerability
+
+  * Supported Versions
+
+* Contributor guidelines
+
+  * Developer prerequisites
+
+  * Code standards
+
+  * Requirements
+
+  * Virtual environment
+
+  * Documentation
+
+  * Testing
+
+  * Pull requests
+
+  * Questions
+
+  * Issues
+
+* Contributor Covenant Code of Conduct
+
+  * Our Pledge
+
+  * Our Standards
+
+  * Enforcement Responsibilities
+
+  * Scope
+
+  * Enforcement
+
+  * Enforcement Guidelines
+
+  * Attribution
+
+* Release history and notes
+
+  * 0.1.2
+
+  * 0.1.1
+
+  * 0.1
+
+* Package
+
+  * sphinx_no_pragma module
+
+* Indices and tables
