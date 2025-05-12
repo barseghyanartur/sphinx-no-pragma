@@ -30,8 +30,12 @@ def build_tree(
         if any(fnmatch.fnmatch(rel_path, pat) for pat in ignore_patterns):
             continue
         # Enforce whitelist if not including all
-        if not include_all and whitelist_dirs and not any(
-            rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs
+        if (
+            not include_all
+            and whitelist_dirs
+            and not any(
+                rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs
+            )
         ):
             continue
         connector = "└── " if i == len(entries) - 1 else "├── "
@@ -107,7 +111,7 @@ def main():
         nargs="+",
         default=["__pycache__", "*.pyc", "*.py,cover"],
         help="Ignore files or dirs matching these glob patterns (relative to "
-             "project root)",
+        "project root)",
     )
     p.add_argument(
         "-w",
@@ -115,7 +119,7 @@ def main():
         nargs="+",
         default=["src", "docs", "examples", "scripts"],
         help="Directories (relative to project root) to include "
-             "unless --include-all is given",
+        "unless --include-all is given",
     )
     p.add_argument(
         "--include-all",
@@ -167,7 +171,8 @@ the contents of each key file.
             not include_all
             and whitelist_dirs
             and not any(
-            rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs)
+                rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs
+            )
         ):
             continue
 
