@@ -13,6 +13,7 @@ sphinx-no-pragma
 .. _Read the Docs: http://sphinx-no-pragma.readthedocs.io/
 .. _Demo: http://sphinx-no-pragma.readthedocs.io/en/latest/demo.html
 .. _Contributor guidelines: https://sphinx-no-pragma.readthedocs.io/en/latest/contributor_guidelines.html
+.. _llms.txt: https://barseghyanartur.github.io/sphinx-no-pragma/llms.txt
 
 **Improve developer experience**:
 
@@ -35,6 +36,10 @@ sphinx-no-pragma
 .. image:: https://readthedocs.org/projects/sphinx-no-pragma/badge/?version=latest
     :target: http://sphinx-no-pragma.readthedocs.io
     :alt: Documentation Status
+
+.. image:: https://img.shields.io/badge/docs-llms.txt-blue
+    :target: https://barseghyanartur.github.io/sphinx-no-pragma/llms.txt
+    :alt: llms.txt - documentation for LLMs
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/barseghyanartur/sphinx-no-pragma/#License
