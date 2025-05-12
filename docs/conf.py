@@ -12,12 +12,12 @@ sys.path.insert(0, os.path.abspath(".."))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 try:
-    import no_pragma
+    import sphinx_no_pragma
 
-    version = no_pragma.__version__
-    project = no_pragma.__title__
-    copyright = no_pragma.__copyright__
-    author = no_pragma.__author__
+    version = sphinx_no_pragma.__version__
+    project = sphinx_no_pragma.__title__
+    copyright = sphinx_no_pragma.__copyright__
+    author = sphinx_no_pragma.__author__
 except ImportError:
     version = "0.1"
     project = "sphinx-no-pragma"
