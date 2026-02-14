@@ -38,9 +38,7 @@ Demo
    length = len(obj)
 
    # Deliberately long line to violate PEP 8 line length rule, suppressed with
-   print(
-       f"The length of the object, a dynamically typed one, is just {length}"
-   )
+   print(f"The length of the object, a dynamically typed one, is just {length}")
 
    # --- Additional tests for ignore markers ---
 

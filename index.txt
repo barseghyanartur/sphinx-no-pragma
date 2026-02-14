@@ -94,7 +94,7 @@ Features
 Prerequisites
 =============
 
-Python 3.9+
+Python 3.10+
 
 
 Installation
@@ -393,6 +393,8 @@ Table of Contents
   * Attribution
 
 * Release history and notes
+
+  * 0.1.3
 
   * 0.1.2
 

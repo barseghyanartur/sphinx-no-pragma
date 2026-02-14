@@ -27,9 +27,7 @@ Code standards
 black, isort, ruff and doc8 will be automatically triggered by pre-
 commit. Still, if you want to run checks manually:
 
-   make black
    make doc8
-   make isort
    make ruff
 
 

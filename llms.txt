@@ -94,7 +94,7 @@ Features
 Prerequisites
 =============
 
-Python 3.9+
+Python 3.10+
 
 
 Installation
@@ -351,9 +351,7 @@ Demo
    length = len(obj)
 
    # Deliberately long line to violate PEP 8 line length rule, suppressed with
-   print(
-       f"The length of the object, a dynamically typed one, is just {length}"
-   )
+   print(f"The length of the object, a dynamically typed one, is just {length}")
 
    # --- Additional tests for ignore markers ---
 
@@ -396,45 +394,6 @@ Demo
 ======================================================================
 
 
-Security Policy
-===============
-
-
-Reporting a Vulnerability
--------------------------
-
-**Do not report security issues on GitHub!**
-
-Please report security issues by emailing Artur Barseghyan
-<artur.barseghyan@gmail.com>.
-
-
-Supported Versions
-------------------
-
-**Make sure to use the latest version.**
-
-The two most recent "sphinx-no-pragma" release series receive security
-support.
-
-For example, during the development cycle leading to the release of
-"sphinx-no-pragma" 0.17.x, support will be provided for "sphinx-no-
-pragma" 0.16.x.
-
-Upon the release of "sphinx-no-pragma" 0.18.x, security support for
-"sphinx-no-pragma" 0.16.x will end.
-
-   ┌─────────────────┬────────────────┐
-   │ Version         │ Supported      │
-   ├─────────────────┼────────────────┤
-   │ 0.1.x           │ Yes            │
-   ├─────────────────┼────────────────┤
-   │ < 0.1           │ No             │
-   └─────────────────┴────────────────┘
-
-======================================================================
-
-
 Contributor guidelines
 ======================
 
@@ -464,9 +423,7 @@ Code standards
 black, isort, ruff and doc8 will be automatically triggered by pre-
 commit. Still, if you want to run checks manually:
 
-   make black
    make doc8
-   make isort
    make ruff
 
 
@@ -556,121 +513,531 @@ section.
 ======================================================================
 
 
-Release history and notes
-=========================
-
-Sequence based identifiers are used for versioning (schema follows
-below):
-
-   major.minor[.revision]
-
-* It's always safe to upgrade within the same minor version (for
-  example, from 0.3 to 0.3.4).
-
-* Minor version changes might be backwards incompatible. Read the
-  release notes carefully before upgrading (for example, when
-  upgrading from 0.3.4 to 0.4).
-
-* All backwards incompatible changes are mentioned in this document.
-
-
-0.1.2
------
-
-2025-04-10
-
-* Extend "ignore_comments_endings" with other most common pragma
-  options.
-
-* Add "user_ignore_comments_endings" configuration options for user-
-  defined additional comments endings to ignore.
-
-* Document configuration options.
-
-* Start testing against Python 3.12 and 3.13.
-
-* Stop testing against Python 3.8.
-
-
-0.1.1
------
-
-2024-07-03
-
-* Minor improvement of packaging and docs.
-
-
-0.1
----
-
-2023-12-18
-
-* Initial beta release.
-
-======================================================================
-
-
-Package
-=======
-
-* sphinx_no_pragma module
-
-  * "NoPragmaLiteralInclude"
-
-    * "NoPragmaLiteralInclude.remove_endings()"
-
-    * "NoPragmaLiteralInclude.run()"
-
-  * "setup()"
-
-
-Indices and tables
-==================
-
-* Index
-
-* Module Index
-
-* Search Page
-
-======================================================================
-
-
 Project source-tree
 ===================
 
-Below is the layout of our project (to 10 levels), followed by the
+Below is the layout of the project (to 10 levels), followed by the
 contents of each key file.
 
 Project directory layout
 
    sphinx-no-pragma/
-
    ├── docs
-   │   ├── _build
-   │   ├── _static
-   │   │   └── example_1.py
-   │   ├── _templates
-   │   ├── changelog.rst
-   │   ├── code_of_conduct.rst
    │   ├── conf.py
-   │   ├── conf.py.distrib
    │   ├── contributor_guidelines.rst
    │   ├── demo.rst
    │   ├── documentation.rst
    │   ├── index.rst
-   │   ├── index.rst.distrib
    │   ├── llms.rst
-   │   ├── make.bat
-   │   ├── Makefile
    │   ├── package.rst
-   │   ├── requirements.txt
-   │   ├── security.rst
    │   └── sphinx_no_pragma.rst
    ├── examples
+   │   ├── __init__.py
    │   └── example_1.py
-   ├── scripts
-   │   └── generate_project_source_tree.py
+   ├── .coveralls.yml
+   ├── CONTRIBUTING.rst
+   ├── Makefile
+   ├── pyproject.toml
+   ├── README.rst
+   ├── SECURITY.md
+   ├── sphinx_no_pragma.py
+   └── tests.py
+
+
+.coveralls.yml
+--------------
+
+.coveralls.yml
+
+   service_name: github-actions
+
+
+CONTRIBUTING.rst
+----------------
+
+CONTRIBUTING.rst
+
+   Contributor guidelines
+   ======================
+
+   .. _documentation: https://sphinx-no-pragma.readthedocs.io/#writing-documentation
+   .. _testing: https://sphinx-no-pragma.readthedocs.io/#testing
+   .. _pre-commit: https://pre-commit.com/#installation
+   .. _black: https://black.readthedocs.io/
+   .. _isort: https://pycqa.github.io/isort/
+   .. _doc8: https://doc8.readthedocs.io/
+   .. _ruff: https://beta.ruff.rs/docs/
+   .. _pip-tools: https://pip-tools.readthedocs.io/
+   .. _issues: https://github.com/barseghyanartur/sphinx-no-pragma/issues
+   .. _discussions: https://github.com/barseghyanartur/sphinx-no-pragma/discussions
+   .. _pull request: https://github.com/barseghyanartur/sphinx-no-pragma/pulls
+   .. _support: https://sphinx-no-pragma.readthedocs.io/#support
+   .. _installation: https://sphinx-no-pragma.readthedocs.io/#installation
+   .. _features: https://sphinx-no-pragma.readthedocs.io/#features
+   .. _prerequisites: https://sphinx-no-pragma.readthedocs.io/#prerequisites
+   .. _demo: https://sphinx-no-pragma.readthedocs.io/en/latest/demo.html
+
+   Developer prerequisites
+   -----------------------
+   pre-commit
+   ~~~~~~~~~~
+   Refer to `pre-commit`_ for installation instructions.
+
+   TL;DR:
+
+   .. code-block:: sh
+
+       pip install pipx --user  # Install pipx
+       pipx install pre-commit  # Install pre-commit
+       pre-commit install  # Install pre-commit hooks
+
+   Installing `pre-commit`_ will ensure you adhere to the project code quality
+   standards.
+
+   Code standards
+   --------------
+   `black`_, `isort`_, `ruff`_ and `doc8`_ will be automatically triggered by
+   `pre-commit`_. Still, if you want to run checks manually:
+
+   .. code-block:: sh
+
+       make doc8
+       make ruff
+
+   Requirements
+   ------------
+   Requirements are compiled using `pip-tools`_.
+
+   .. code-block:: sh
+
+       make compile-requirements
+
+   Virtual environment
+   -------------------
+   You are advised to work in virtual environment.
+
+   TL;DR:
+
+   .. code-block:: sh
+
+       python -m venv env
+       pip install -e .[all]
+
+   Documentation
+   -------------
+   Check `documentation`_.
+
+   Testing
+   -------
+   Check `testing`_.
+
+   If you introduce changes or fixes, make sure to test them locally using
+   all supported environments. For that use tox.
+
+   .. code-block:: sh
+
+       tox
+
+   In any case, GitHub Actions will catch potential errors, but using tox speeds
+   things up.
+
+   Pull requests
+   -------------
+   You can contribute to the project by making a `pull request`_.
+
+   For example:
+
+   - To fix documentation typos.
+   - To improve documentation (for instance, to add new rule or fix
+     an existing rule that doesn't seem to work).
+   - To introduce a new feature.
+
+   **General list to go through:**
+
+   - Does your change require documentation update?
+   - Does your change require update to tests?
+
+   **When fixing bugs (in addition to the general list):**
+
+   - Make sure to add regression tests.
+
+   **When adding a new feature (in addition to the general list):**
+
+   - Make sure to update the documentation (check whether the `installation`_,
+     `features`_ or `demo`_ require changes).
+
+   Questions
+   ---------
+   Questions can be asked on GitHub `discussions`_.
+
+   Issues
+   ------
+   For reporting a bug or filing a feature request use GitHub `issues`_.
+
+   **Do not report security issues on GitHub**. Check the `support`_ section.
+
+
+README.rst
+----------
+
+README.rst
+
+   ================
+   sphinx-no-pragma
+   ================
+   .. External references
+
+   .. _Sphinx: https://github.com/sphinx-doc/sphinx
+   .. _jsphinx: https://jsphinx.readthedocs.io/
+   .. _MyPy: https://mypy.readthedocs.io/
+
+   .. Internal references
+
+   .. _sphinx-no-pragma: https://github.com/barseghyanartur/sphinx-no-pragma/
+   .. _Read the Docs: http://sphinx-no-pragma.readthedocs.io/
+   .. _Demo: http://sphinx-no-pragma.readthedocs.io/en/latest/demo.html
+   .. _Contributor guidelines: https://sphinx-no-pragma.readthedocs.io/en/latest/contributor_guidelines.html
+   .. _llms.txt: https://barseghyanartur.github.io/sphinx-no-pragma/llms.txt
+
+   **Improve developer experience**:
+
+   - Write better docs.
+   - Do not repeat yourself.
+   - Assure code low-maintenance.
+
+   .. image:: https://img.shields.io/pypi/v/sphinx-no-pragma.svg
+      :target: https://pypi.python.org/pypi/sphinx-no-pragma.py
+      :alt: PyPI Version
+
+   .. image:: https://img.shields.io/pypi/pyversions/sphinx-no-pragma.svg
+       :target: https://pypi.python.org/pypi/sphinx-no-pragma/
+       :alt: Supported Python versions
+
+   .. image:: https://github.com/barseghyanartur/sphinx-no-pragma/actions/workflows/test.yml/badge.svg?branch=main
+      :target: https://github.com/barseghyanartur/sphinx-no-pragma/actions
+      :alt: Build Status
+
+   .. image:: https://readthedocs.org/projects/sphinx-no-pragma/badge/?version=latest
+       :target: http://sphinx-no-pragma.readthedocs.io
+       :alt: Documentation Status
+
+   .. image:: https://img.shields.io/badge/docs-llms.txt-blue
+       :target: https://barseghyanartur.github.io/sphinx-no-pragma/llms.txt
+       :alt: llms.txt - documentation for LLMs
+
+   .. image:: https://img.shields.io/badge/license-MIT-blue.svg
+      :target: https://github.com/barseghyanartur/sphinx-no-pragma/#License
+      :alt: MIT
+
+   .. image:: https://coveralls.io/repos/github/barseghyanartur/sphinx-no-pragma/badge.svg?branch=main&service=github
+       :target: https://coveralls.io/github/barseghyanartur/sphinx-no-pragma?branch=main
+       :alt: Coverage
+
+   **TL;DR**
+
+   `sphinx-no-pragma`_ is a `Sphinx`_ extension for stripping pragma comments
+   from source code used in documentation.
+
+   If that's all you need to know to move forward, jump right to the
+   `installation`_. Otherwise, read further.
+
+   ----
+
+   Some say, "documentation is the king". Others argue - "no, demos are". While
+   some say, "testing is everything!" and yet there will be someone else who
+   will jump in with "write clean code! black, isort, mypy and ruff everywhere!"
+
+   And yet there's you, who want to be good and write a better package, because
+   there's a generic problem that needs to be solved, and you know how, you want
+   to share it with the world. You also want to assure or at least make an effort
+   in making your project developer friendly, attractive for making contributions,
+   which eventually leads to continuous improvement and make it live long(er).
+
+   So, combining the best practices, you:
+
+   - Introduce examples in your repository to make it easier to start with.
+   - Write awesome docs with usage examples (by eventually repeating yourself,
+     copying things from your actual code examples).
+   - Write tests for your code. Then you realize it's good to test the examples
+     too. Eventually, you have now almost the same code in 3 places: tests,
+     examples and docs.
+   - Introduce linters and `MyPy`_.
+
+   Then you invest your time in making sure all your code looks correct and fix
+   the never-ending `MyPy`_ issues.
+
+   Then you need to make a small change, which unfortunately, among other,
+   requires altering the examples code. You need to change the examples, the
+   docs, the tests and the examples tests. However, you also need to push the
+   change quickly. As many times before, you skip documentation update,
+   leaving it for "another time".
+
+   By that time you discover that code maintenance is a hell. You fix everything,
+   tests pass you're happy to push, by then `MyPy`_ starts to nag about issues
+   you have no idea how to solve and by that moment you don't care about them.
+   You're sick of it and start using pragma comments to silence the errors,
+   leaving the fix for another day. Your maintenance work involves a lot of
+   copy-pasting from one place to another (examples, tests, documentation).
+
+   Does this sound familiar?
+
+   ----
+
+   What if I tell you that actually a couple of steps can be taken out.
+   Namely, that you can use your example code directly in your documentation,
+   using ``.. literalinclude::`` directive of `Sphinx`_. That part has already
+   been well covered in `jsphinx`_ project (JavaScript primarily). However,
+   what `jsphinx`_ didn't solve is presence of pragma comments in your
+   documentation. This project does take care of that part.
+   You don't need to choose or balance between readability, explainability and
+   low-maintenance.
+
+   Written by lazy developer for lazy developers to improve developer experience
+   in writing low-maintenance code.
+
+   Features
+   ========
+   - Accurately stips out pragma comments from your source code that you include
+     in your documentation.
+
+   Prerequisites
+   =============
+   Python 3.10+
+
+   Installation
+   ============
+   .. code-block:: sh
+
+       pip install sphinx-no-pragma
+
+   Documentation
+   =============
+   - Documentation is available on `Read the Docs`_.
+   - For guidelines on contributing check the `Contributor guidelines`_.
+
+   Usage example
+   =============
+   In order to move forward, you first need to get educate yourself a little on
+   `Sphinx`_'s directives. Namely the ``.. literalinclude::`` and ``:download:``.
+   For that, first read the `jsphinx`_ documentation.
+
+   But there might be a little problem with that. Of course you might be lucky and
+   have zero pragma comments in your code (no ``# noqa``,
+   no ``# type: ignore``, etc). But more often, you get at least a couple of
+   these. Your perfectionist nature doesn't easily allow you to let them be
+   part of your concise, beautiful documentation. Cursing me for earlier
+   advices, you start to replace your DRY documentation part with copy-pasted
+   examples.
+
+   This is where this package jumps in. It simply is a `Sphinx`_ extension that
+   strips all pragma comments from your code that goes into documentation.
+
+   Sphinx configuration
+   --------------------
+   Essential configuration
+   ~~~~~~~~~~~~~~~~~~~~~~~
+   *Filename: docs/conf.py*
+
+   .. code-block:: python
+       :name: test_docs_conf_extensions
+
+       extensions = [
+           # ... other extensions
+           "sphinx_no_pragma",
+           # ... other extensions
+       ]
+
+   Fine-tuning what to strip
+   ~~~~~~~~~~~~~~~~~~~~~~~~~
+   By default, the following markers are stripped:
+
+   - ``# type: ignore``
+   - ``# noqa``
+   - ``# pragma: no cover``
+   - ``# pragma: no branch``
+   - ``# fmt: off``
+   - ``# fmt: on``
+   - ``# fmt: skip``
+   - ``# yapf: disable``
+   - ``# yapf: enable``
+   - ``# pylint: disable``
+   - ``# pylint: enable``
+   - ``# flake8: noqa``
+   - ``# noinspection``
+   - ``# pragma: allowlist secret``
+   - ``# pragma: NOSONAR``
+
+   If you want to alter the default behaviour, define
+   a ``ignore_comments_endings`` variable in your Sphinx configuration
+   file (``docs/conf.py``) as shown below:
+
+   *Filename: docs/conf.py*
+
+   .. code-block:: python
+       :name: test_docs_conf_ignore_comments_endings
+
+       ignore_comments_endings = [
+           "# type: ignore",
+           "# noqa",
+           "# pragma: no cover",
+           "# pragma: no branch",
+           "# fmt: off",
+           "# fmt: skip",
+           "# yapf: disable",
+           "# pylint: disable",
+           "# flake8: noqa",
+           "# noinspection",
+       ]
+
+   If you want to simply extend the list of markers, use another variable
+   to define your own list, that would be appended to the default one.
+
+   *Filename: docs/conf.py*
+
+   .. code-block:: python
+       :name: test_docs_conf_user_ignore_comments_endings
+
+       # Set user defined endings
+       user_ignore_comments_endings = [
+           "# [start]",
+       ]
+
+   Code example
+   ------------
+   *Filename: examples/example_1.py*
+
+   .. code-block:: python
+       :name: test_examples_example_1
+
+       from typing import Any, Optional
+
+       class ThirdPartyLibrary:
+           @staticmethod
+           def get_dynamic_object() -> Any:
+               # Returns an object whose type is not known at compile time
+               return "a string"  # In reality, this could be any type
+
+
+       # Usage of the third-party library
+       obj = ThirdPartyLibrary.get_dynamic_object()
+
+       # Attempt to use the object as a string, even though its type is 'Any'
+       length = len(obj)  # type: ignore
+
+       # Deliberately long line to violate PEP 8 line length rule, suppressed with noqa
+       print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
+
+   Given that this is your code structure:
+
+   .. code-block:: text
+
+       ├── examples
+       │  └── example_1.py
+       ├── docs
+       │  ├── conf.py
+       │  ├── index.rst
+       │  ├── Makefile
+       │  ├── _static
+       │  │  └── example_1.py
+       │  └── usage.rst
+       ├── LICENSE
+       ├── Makefile
+       ├── pyproject.toml
+       ├── README.rst
+       └── sphinx_no_pragma.py
+
+   Either use ``html_extra_path = ["examples"]`` or make a symlink to
+   ``examples/example_1.py`` from ``docs/_static``.
+
+   Then include it in your docs as follows:
+
+   *Filename: example.rst*
+
+   .. code-block:: rst
+
+       .. container:: jsphinx-download
+
+       .. literalinclude:: _static/example_1.py
+           :name: test_example_1
+           :language: python
+           :lines: 1-
+
+       *See the full example*
+       :download:`here <_static/example_1.py>`
+
+   Now, rendered, your code will not contain `# type: ignore` or `# noqa` pragma
+   comments.
+
+   See the `demo`_. Click on the `See the full example here` link to see
+   the original code.
+
+   Tests
+   =====
+   Run the tests with unittest:
+
+   .. code-block:: sh
+
+       python -m unittest sphinx_no_pragma.py
+
+   Or pytest:
+
+   .. code-block:: sh
+
+       pytest
+
+   License
+   =======
+   MIT
+
+   Support
+   =======
+   For security issues contact me at the e-mail given in the `Author`_ section.
+
+   For overall issues, go to
+   `GitHub <https://github.com/barseghyanartur/sphinx-no-pragma/issues>`_.
+
+   Author
+   ======
+   Artur Barseghyan <artur.barseghyan@gmail.com>
+
+
+SECURITY.md
+-----------
+
+SECURITY.md
+
+   Security Policy
+   ===============
+   Reporting a Vulnerability
+   -------------------------
+   **Do not report security issues on GitHub!**
+
+   Please report security issues by emailing Artur Barseghyan
+   <artur.barseghyan@gmail.com>.
+
+   Supported Versions
+   ------------------
+   **Make sure to use the latest version.**
+
+   The two most recent ``sphinx-no-pragma`` release series receive security
+   support.
+
+   For example, during the development cycle leading to the release
+   of ``sphinx-no-pragma`` 0.17.x, support will be provided
+   for ``sphinx-no-pragma`` 0.16.x.
+
+   Upon the release of ``sphinx-no-pragma`` 0.18.x, security support
+   for ``sphinx-no-pragma`` 0.16.x will end.
+
+   .. code-block:: text
+
+       ┌─────────────────┬────────────────┐
+       │ Version         │ Supported      │
+       ├─────────────────┼────────────────┤
+       │ 0.1.x           │ Yes            │
+       ├─────────────────┼────────────────┤
+       │ < 0.1           │ No             │
+       └─────────────────┴────────────────┘
 
 
 docs/_static/example_1.py
@@ -713,9 +1080,7 @@ docs/_static/example_1.py
    length = len(obj)  # type: ignore
 
    # Deliberately long line to violate PEP 8 line length rule, suppressed with # noqa
-   print(
-       f"The length of the object, a dynamically typed one, is just {length}"
-   )  # noqa
+   print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
 
    # --- Additional tests for ignore markers ---
 
@@ -752,22 +1117,6 @@ docs/_static/example_1.py
    # Security allowlisting markers:
    print("Test allowlist secret")  # pragma: allowlist secret
    print("Test NOSONAR")  # pragma: NOSONAR
-
-
-docs/changelog.rst
-------------------
-
-docs/changelog.rst
-
-   .. include:: ../CHANGELOG.rst
-
-
-docs/code_of_conduct.rst
-------------------------
-
-docs/code_of_conduct.rst
-
-   .. include:: ../CODE_OF_CONDUCT.rst
 
 
 docs/conf.py
@@ -898,6 +1247,7 @@ docs/demo.rst
        .. literalinclude:: _static/example_1.py
            :language: python
            :lines: 1-
+           :name: test_example_1
 
        *See the full example*
        :download:`here <_static/example_1.py>`
@@ -949,19 +1299,7 @@ docs/llms.rst
 
    ----
 
-   .. include:: security.rst
-
-   ----
-
    .. include:: contributor_guidelines.rst
-
-   ----
-
-   .. include:: changelog.rst
-
-   ----
-
-   .. include:: package.rst
 
    ----
 
@@ -990,14 +1328,6 @@ docs/package.rst
    * :ref:`search`
 
 
-docs/security.rst
------------------
-
-docs/security.rst
-
-   .. include:: ../SECURITY.rst
-
-
 docs/sphinx_no_pragma.rst
 -------------------------
 
@@ -1010,6 +1340,12 @@ docs/sphinx_no_pragma.rst
       :members:
       :undoc-members:
       :show-inheritance:
+
+
+examples/__init__.py
+--------------------
+
+examples/__init__.py
 
 
 examples/example_1.py
@@ -1052,9 +1388,7 @@ examples/example_1.py
    length = len(obj)  # type: ignore
 
    # Deliberately long line to violate PEP 8 line length rule, suppressed with # noqa
-   print(
-       f"The length of the object, a dynamically typed one, is just {length}"
-   )  # noqa
+   print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
 
    # --- Additional tests for ignore markers ---
 
@@ -1093,211 +1427,443 @@ examples/example_1.py
    print("Test NOSONAR")  # pragma: NOSONAR
 
 
-scripts/generate_project_source_tree.py
----------------------------------------
+pyproject.toml
+--------------
 
-scripts/generate_project_source_tree.py
+pyproject.toml
 
-   #!/usr/bin/env python3
-   import argparse
-   import fnmatch
-   import os
+   [project]
+   name = "sphinx-no-pragma"
+   description = "Strip pragmas from your docs."
+   readme = "README.rst"
+   version = "0.1.3"
+   dependencies = [
+       "docutils",
+       "sphinx",
+   ]
+   authors = [
+       {name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com"},
+   ]
+   license = "MIT"
+   classifiers = [
+       "Development Status :: 4 - Beta",
+       "Intended Audience :: Developers",
+       "Operating System :: OS Independent",
+       "Programming Language :: Python :: 3",
+       "Programming Language :: Python :: 3.10",
+       "Programming Language :: Python :: 3.11",
+       "Programming Language :: Python :: 3.12",
+       "Programming Language :: Python :: 3.13",
+       "Programming Language :: Python :: 3.14",
+       "Programming Language :: Python",
+       "Topic :: Software Development :: Testing",
+       "Topic :: Software Development",
+   ]
+   keywords = ["sphinx", "documentation", "pragma"]
+
+   [project.urls]
+   "Homepage" = "https://github.com/barseghyanartur/sphinx-no-pragma/"
+   "Bug Tracker" = "https://github.com/barseghyanartur/sphinx-no-pragma/issues"
+   "Documentation" = "https://sphinx-no-pragma.readthedocs.io/"
+   "Source Code" = "https://github.com/barseghyanartur/sphinx-no-pragma/"
+   "Changelog" = "https://sphinx-no-pragma.readthedocs.io/en/latest/changelog.html"
+
+   [project.optional-dependencies]
+   all = ["sphinx-no-pragma[dev,test,docs]"]
+   dev = [
+       "detect-secrets",
+       "doc8",
+       "ipython",
+       "mypy",
+       "ruff",
+       "twine",
+       "uv",
+   ]
+   test = [
+       "pytest",
+       "pytest-codeblock",
+       "pytest-cov",
+   ]
+   docs = [
+       "sphinx",
+       "sphinx-rtd-theme>=1.3.0",
+       "sphinx-markdown-builder",
+       "sphinx-llms-txt-link",
+       "sphinx-source-tree",
+   ]
+
+   [tool.setuptools]
+   py-modules = ["sphinx_no_pragma"]
+
+   [tool.black]
+   line-length = 80
+   target-version = ['py38', 'py39', 'py310', 'py311']
+   include = '\.pyi?$'
+   force-exclude = 'docs/_static/example_1\.py'
+   extend-exclude = '''
+   /(
+     # The following are specific to Black, you probably don't want those.
+     | blib2to3
+     | tests/data
+     | profiling
+     | migrations
+   )/
+   '''
+
+   # Build system information below.
+   # NOTE: You don't need this in your own Black configuration.
+   [build-system]
+   requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
+   build-backend = "setuptools.build_meta"
+
+   [tool.isort]
+   profile = "black"
+   combine_as_imports = true
+   multi_line_output = 3
+   include_trailing_comma = true
+   force_grid_wrap = 0
+   use_parentheses = true
+   ensure_newline_before_comments = true
+   line_length = 80
+   known_first_party = [
+       "example_1",
+   ]
+   known_third_party = ["sphinx_no_pragma"]
+   skip = ["wsgi.py", "builddocs/"]
+
+   [tool.ruff]
+   line-length = 80
+
+   # Enable Pyflakes `E` and `F` codes by default.
+   lint.select = [
+   #    "ANN",  # Annotations: missing (return) types
+       "B",  # Bugbear: common bug patterns or design problems
+       "C4",  # Complexity: McCabe complexity checker
+       "E",  # Pycodesyle: Style guide enforcement
+       "F",  # Pyflakes: Source files errors
+       "G",  # Logging format: Basic logging format errors
+       "I",  # Isort: import sorting
+       "ISC",  # Naming: Variable naming convention
+       "INP",  # Implicit namespace packages: Check if __init__.py is present
+       "N",  # Naming: Variable naming convention
+       "PERF",  # Perflint: Performance linting
+       "Q",
+       "SIM",  # Simplify: Helps simplify your code
+       "TD",  # TO DO: Format TO DO comments
+   ]
+   lint.ignore = [
+       "G004",  # Allow use of f-string in logging
+       "ISC003",  # Allow explicitly concatenated strings
+   #    "N805",  # Allow first argument of a method be named other than `self`
+       "TD002",  # Allow to do without author
+       "TD003",  # Allow to do without URL
+   ]
+   # Enable autofix for formatting and import sorting
+   fix = true
+
+   # Exclude a variety of commonly ignored directories.
+   exclude = [
+       ".bzr",
+       ".direnv",
+       ".eggs",
+       ".git",
+       ".hg",
+       ".mypy_cache",
+       ".nox",
+       ".pants.d",
+       ".ruff_cache",
+       ".svn",
+       ".tox",
+       ".venv",
+       "__pypackages__",
+       "_build",
+       "buck-out",
+       "build",
+       "dist",
+       "node_modules",
+       "venv",
+       "docs",
+   ]
+   lint.per-file-ignores = {}
+
+   # Allow unused variables when underscore-prefixed.
+   lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+   # Assume Python 3.8.
+   target-version = "py38"
+
+   [tool.doc8]
+   ignore-path = [
+       "docs/requirements.txt",
+       "sphinx-no-pragma.egg-info/SOURCES.txt",
+   ]
+
+   [tool.pytest.ini_options]
+   minversion = "0.1.3"
+   addopts = [
+       "-ra",
+       "-vvv",
+       "-q",
+      "--cov=sphinx_no_pragma",
+      "--ignore=.tox",
+      "--ignore=requirements",
+      "--ignore=release",
+      "--ignore=tmp",
+      "--cov-report=html",
+      "--cov-report=term",
+      "--cov-report=annotate",
+      "--cov-append",
+      "--capture=no",
+   ]
+   testpaths = [
+       "sphinx_no_pragma.py",
+       "test*.py",
+       "**/*.rst",
+       "**/*.md",
+   ]
+
+   [tool.coverage.run]
+   relative_files = true
+   omit = [
+       ".tox/*",
+   ]
+
+   [tool.coverage.report]
+   show_missing = true
+   exclude_lines = [
+       "pragma: no cover",
+       "@overload",
+   ]
+
+   [tool.mypy]
+   check_untyped_defs = true
+   warn_unused_ignores = true
+   warn_redundant_casts = true
+   warn_unused_configs = true
+
+   [tool.sphinx-source-tree]
+   ignore = [
+       "__pycache__",
+       "*.pyc",
+       "*.pyo",
+       "*.py,cover",
+       ".git",
+       ".hg",
+       ".svn",
+       ".tox",
+       ".nox",
+       ".venv",
+       "venv",
+       "env",
+       "*.egg-info",
+       "dist",
+       "build",
+       "node_modules",
+       ".mypy_cache",
+       ".pytest_cache",
+       ".coverage",
+       "htmlcov",
+       ".idea",
+       ".vscode",
+       ".DS_Store",
+       "Thumbs.db",
+       ".ruff_cache",
+       ".coverage.*",
+       ".secrets.baseline",
+       ".pre-commit-config.yaml",
+       ".pre-commit-hooks.yaml",
+       ".readthedocs.yaml",
+       "CHANGELOG.rst",
+       "CODE_OF_CONDUCT.rst",
+       "CODE_OF_CONDUCT.md",
+       "CONTRIBUTING.md",
+       "LICENSE",
+       "SECURITY.rst",
+       "docs/_static",
+       "docs/_build",
+       "docs/changelog.rst",
+       "docs/code_of_conduct.rst",
+       "docs/customization",
+       "docs/security.rst",
+       "docs/source_tree.rst",
+       "docs/make.bat",
+       "docs/Makefile",
+       "docs/requirements.txt",
+       ".hypothesis",
+       "codebin",
+   ]
+
+
+sphinx_no_pragma.py
+-------------------
+
+sphinx_no_pragma.py
+
+   """
+   https://github.com/barseghyanartur/sphinx-no-pragma/
+   """
+
+   import re
+   from copy import deepcopy
+
+   from docutils import nodes
+   from sphinx.directives.code import LiteralInclude
+
+   __title__ = "sphinx-no-pragma"
+   __version__ = "0.1.3"
+   __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+   __copyright__ = "2023-2025 Artur Barseghyan"
+   __license__ = "MIT"
+   __all__ = (
+       "DEFAULT_IGNORE_COMMENTS_ENDINGS",
+       "NoPragmaLiteralInclude",
+       "setup",
+   )
+
+   DEFAULT_IGNORE_COMMENTS_ENDINGS = [
+       "# type: ignore",
+       "# noqa",
+       "# pragma: no cover",
+       "# pragma: no branch",
+       "# fmt: off",
+       "# fmt: on",
+       "# fmt: skip",
+       "# yapf: disable",
+       "# yapf: enable",
+       "# pylint: disable",
+       "# pylint: enable",
+       "# flake8: noqa",
+       "# noinspection",
+       "# pragma: allowlist secret",
+       "# pragma: NOSONAR",
+   ]
+
+
+   class NoPragmaLiteralInclude(LiteralInclude):
+       def run(self):
+           # Retrieve the global configuration set in conf.py
+           config = self.state.document.settings.env.config
+
+           # Default ignore endings
+           ignore_endings = deepcopy(config.ignore_comments_endings)
+           if not isinstance(ignore_endings, list):
+               ignore_endings = [ignore_endings]
+
+           # Additional user-defined ignore endings
+           user_ignore_endings = deepcopy(config.user_ignore_comments_endings)
+           if not isinstance(user_ignore_endings, list):
+               user_ignore_endings = [user_ignore_endings]
+
+           # Merge the two
+           ignore_endings.extend(user_ignore_endings)
+
+           # Get the original content generated by LiteralInclude
+           original_content = super().run()
+           new_content = []
+
+           for node in original_content:
+               if isinstance(node, nodes.literal_block):
+                   # Modify lines by removing specified endings
+                   lines = node.rawsource.splitlines()
+                   filtered_lines = [
+                       self.remove_endings(line, ignore_endings) for line in lines
+                   ]
+                   # Update the node content
+                   node.rawsource = "\n".join(filtered_lines)
+                   node[:] = [nodes.Text("\n".join(filtered_lines))]
+               new_content.append(node)
+
+           return new_content
+
+       def remove_endings(self, line, endings):
+           """Remove from the line any trailing ignore markers.
+
+           For each ending provided, this function uses a regex pattern to match
+           the literal ending, optionally followed by a colon and error codes,
+           and any extra whitespace until the end of the line.
+           It repeatedly removes the matched pattern for each ending.
+           """
+           for ending in endings:
+               # Build a regex pattern: escape the given ending and allow an
+               # optional colon and error codes, plus trailing whitespace until
+               # the end of the line.
+               pattern = re.escape(ending) + r"(?:\s*[:=]\s*\S+|\s+\S+)?\s*$"
+               # Keep removing the marker until no match is found.
+               while re.search(pattern, line):
+                   line = re.sub(pattern, "", line).rstrip()
+           return line
+
+
+   def setup(app):
+       app.add_directive("literalinclude", NoPragmaLiteralInclude, override=True)
+       app.add_config_value(
+           "ignore_comments_endings",
+           DEFAULT_IGNORE_COMMENTS_ENDINGS,
+           "env",
+       )
+       app.add_config_value("user_ignore_comments_endings", [], "env")
+
+       return {
+           "version": "0.1",
+           "parallel_read_safe": True,
+           "parallel_write_safe": True,
+       }
+
+
+tests.py
+--------
+
+tests.py
+
+   """
+   https://github.com/barseghyanartur/sphinx-no-pragma/
+   """
+
+   import shutil
+   import unittest
    from pathlib import Path
 
+   from sphinx.application import Sphinx
 
-   def build_tree(
-       path: Path,
-       max_depth: int,
-       ignore_patterns: list,
-       whitelist_dirs: list,
-       include_all: bool,
-       root: Path,
-       prefix: str = "",
-   ) -> str:
-       """
-       Recursively build an ASCII tree up to max_depth, applying whitelist and
-       ignore rules.
-       """
-       if max_depth < 0:
-           return ""
-       entries = sorted(
-           path.iterdir(), key=lambda p: (p.is_file(), p.name.lower())
-       )
-       lines = []
-       for i, entry in enumerate(entries):
-           rel_path = entry.relative_to(root).as_posix()
-           # Skip ignored patterns
-           if any(fnmatch.fnmatch(rel_path, pat) for pat in ignore_patterns):
-               continue
-           # Enforce whitelist if not including all
-           if (
-               not include_all
-               and whitelist_dirs
-               and not any(
-                   rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs
-               )
-           ):
-               continue
-           connector = "└── " if i == len(entries) - 1 else "├── "
-           lines.append(f"{prefix}{connector}{entry.name}")
-           # Recurse into directories
-           if entry.is_dir():
-               extension = "    " if i == len(entries) - 1 else "│   "
-               subtree = build_tree(
-                   entry,
-                   max_depth - 1,
-                   ignore_patterns,
-                   whitelist_dirs,
-                   include_all,
-                   root,
-                   prefix + extension,
-               )
-               if subtree:
-                   lines += subtree.splitlines()
-       return "\n".join(lines)
+   from sphinx_no_pragma import DEFAULT_IGNORE_COMMENTS_ENDINGS
+
+   __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+   __copyright__ = "2023-2025 Artur Barseghyan"
+   __license__ = "MIT"
+   __all__ = ("TestNoPragmaLiteralInclude",)
 
 
-   def detect_language(path: Path) -> str:
-       """Map file suffix to Sphinx language."""
-       mapping = {
-           ".py": "python",
-           ".js": "javascript",
-           ".java": "java",
-           ".md": "markdown",
-           ".yaml": "yaml",
-           ".yml": "yaml",
-           ".json": "json",
-           ".sh": "bash",
-           ".rst": "rst",
-       }
-       return mapping.get(path.suffix, "")
+   class TestNoPragmaLiteralInclude(unittest.TestCase):
+       def setUp(self):
+           root_dir = Path(__file__).parent
+           self.docs_dir = root_dir / "docs"
+           self.build_dir = root_dir / "test_build_docs"
+           self.doc_tree_dir = self.build_dir / "doc_trees"
 
-
-   def main():
-       p = argparse.ArgumentParser(
-           description="Auto-generate a .rst with tree + literalinclude blocks"
-       )
-       p.add_argument(
-           "-p",
-           "--project-root",
-           type=Path,
-           default=Path("."),
-           help="Path to your project directory",
-       )
-       p.add_argument(
-           "-d",
-           "--depth",
-           type=int,
-           default=10,
-           help="How many levels deep to print in the tree",
-       )
-       p.add_argument(
-           "-o",
-           "--output",
-           type=Path,
-           default=Path("docs/source_tree.rst"),
-           help="Where to write the generated .rst",
-       )
-       p.add_argument(
-           "-e",
-           "--ext",
-           nargs="+",
-           default=[".py", ".md", ".js", ".rst"],
-           help="Which file extensions to include via literalinclude",
-       )
-       p.add_argument(
-           "-i",
-           "--ignore",
-           nargs="+",
-           default=["__pycache__", "*.pyc", "*.py,cover"],
-           help="Ignore files or dirs matching these glob patterns (relative to "
-           "project root)",
-       )
-       p.add_argument(
-           "-w",
-           "--whitelist",
-           nargs="+",
-           default=["src", "docs", "examples", "scripts"],
-           help="Directories (relative to project root) to include "
-           "unless --include-all is given",
-       )
-       p.add_argument(
-           "--include-all",
-           action="store_true",
-           help="Include all files regardless of whitelist",
-       )
-       args = p.parse_args()
-
-       root = args.project_root.resolve()
-       ignore_patterns = args.ignore
-       whitelist_dirs = args.whitelist
-       include_all = args.include_all
-       output = args.output.resolve()
-       output_dir = output.parent.resolve()
-
-       # Header + tree
-       header = f"""Project source-tree
-   ===================
-
-   Below is the layout of our project (to {args.depth} levels), followed by
-   the contents of each key file.
-
-   .. code-block:: bash
-      :caption: Project directory layout
-
-      {root.name}/
-   """
-       tree = build_tree(
-           root,
-           args.depth,
-           ignore_patterns,
-           whitelist_dirs,
-           include_all,
-           root,
-           prefix="   ",
-       )
-       out = [header, tree, ""]
-
-       # Walk and collect files
-       for filepath in sorted(root.rglob("*")):
-           if not filepath.is_file() or filepath.suffix not in args.ext:
-               continue
-           rel_path = filepath.relative_to(root).as_posix()
-           # Skip ignored
-           if any(fnmatch.fnmatch(rel_path, pat) for pat in ignore_patterns):
-               continue
-           # Enforce whitelist
-           if (
-               not include_all
-               and whitelist_dirs
-               and not any(
-                   rel_path.startswith(w.rstrip("/")) for w in whitelist_dirs
-               )
-           ):
-               continue
-
-           # Compute include path relative to output_dir
-           include_path = os.path.relpath(filepath, output_dir).replace(
-               os.sep, "/"
+       def test_build_docs(self):
+           # Build the docs using Sphinx
+           test_app = Sphinx(
+               self.docs_dir,  # Source directory
+               self.docs_dir,  # Config directory
+               self.build_dir,  # Output directory
+               self.doc_tree_dir,  # Doc-tree directory
+               "html",  # Builder
            )
-           title = rel_path
-           underline = "-" * len(title)
-           lang = detect_language(filepath)
-           out += [
-               title,
-               underline,
-               "",
-               f".. literalinclude:: {include_path}",
-               f"   :language: {lang}" if lang else "",
-               f"   :caption: {rel_path}",
-               # "   :linenos:",
-               "",
-           ]
+           test_app.build()
 
-       # Write output
-       args.output.write_text("\n".join(line for line in out if line is not None))
-       print(f"Wrote {args.output}")
+           # Check if usage.html exists
+           demo_html_path = self.build_dir / "demo.html"
+           self.assertTrue(demo_html_path.exists())
 
+           # Read the content of demo.html
+           content = demo_html_path.read_text()
 
-   if __name__ == "__main__":
-       main()
+           # Check for the absence of pragma comments
+           for ignore_comment_ending in DEFAULT_IGNORE_COMMENTS_ENDINGS:
+               with self.subTest(ignore_comment_ending):
+                   self.assertNotIn(ignore_comment_ending, content)
+
+       def tearDown(self):
+           # Clean up the build directory
+           if self.build_dir.exists():
+               shutil.rmtree(self.build_dir)
