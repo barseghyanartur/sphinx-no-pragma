@@ -33,9 +33,7 @@ obj = ThirdPartyLibrary.get_dynamic_object()
 length = len(obj)  # type: ignore
 
 # Deliberately long line to violate PEP 8 line length rule, suppressed with # noqa
-print(
-    f"The length of the object, a dynamically typed one, is just {length}"
-)  # noqa
+print(f"The length of the object, a dynamically typed one, is just {length}")  # noqa
 
 # --- Additional tests for ignore markers ---
 

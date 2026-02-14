@@ -1,17 +1,19 @@
 # Update version ONLY here
-VERSION := 0.1.2
+VERSION := 0.1.3
 SHELL := /bin/bash
 # Makefile for project
 VENV := ~/.virtualenvs/sphinx-no-pragma/bin/activate
+UNAME_S := $(shell uname -s)
 
 # Build documentation using Sphinx and zip it
-build_docs:
-	source $(VENV) && python scripts/generate_project_source_tree.py
-	source $(VENV) && sphinx-build -n -b text docs builddocs
+build-docs:
+	source $(VENV) && sphinx-source-tree
+# 	source $(VENV) && sphinx-build -n -b text docs builddocs
+	source $(VENV) && sphinx-build -n -a -b markdown docs builddocs
 	source $(VENV) && sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
 
-rebuild_docs:
+rebuild-docs:
 	source $(VENV) && sphinx-apidoc . --full -o docs -H 'sphinx-no-pragma' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/index.rst.distrib docs/index.rst
 	cp docs/conf.py.distrib docs/conf.py
@@ -19,28 +21,21 @@ rebuild_docs:
 pre-commit:
 	pre-commit run --all-files
 
-# Format code using Black
-black:
-	source $(VENV) && black .
-
-# Sort imports using isort
-isort:
-	source $(VENV) && isort . --overwrite-in-place
-
 doc8:
 	source $(VENV) && doc8
 
 # Run ruff on the codebase
 ruff:
-	source $(VENV) && ruff .
+	source $(VENV) && ruff check . --fix
+	source $(VENV) && ruff format .
 
-# Serve the built docs on port 5000
-serve_docs:
-	source $(VENV) && python -m http.server 5000 --directory builddocs/
+# Serve the built docs on port 5001
+serve-docs:
+	source $(VENV) && python -m http.server 5001 --directory builddocs/
 
 # Install the project
 install:
-	source $(VENV) && pip install -e .[all]
+	source $(VENV) && pip install -e .'[all]'
 
 test: clean
 	source $(VENV) && pytest -vrx -s
@@ -81,8 +76,14 @@ compile-requirements-upgrade:
 	source $(VENV) && uv pip compile --all-extras -o docs/requirements.txt pyproject.toml --upgrade
 
 update-version:
-	sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml
-	sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' sphinx_no_pragma.py
+	@echo "Updating version in pyproject.toml and sphinx_no_pragma.py"
+	@if [ "$(UNAME_S)" = "Darwin" ]; then \
+		gsed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml; \
+		gsed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' sphinx_no_pragma.py; \
+	else \
+		sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml; \
+		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' sphinx_no_pragma.py; \
+	fi
 
 build:
 	source $(VENV) && python -m build .

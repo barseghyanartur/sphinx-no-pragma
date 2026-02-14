@@ -7,6 +7,7 @@ Demo
     .. literalinclude:: _static/example_1.py
         :language: python
         :lines: 1-
+        :name: test_example_1
 
     *See the full example*
     :download:`here <_static/example_1.py>`
