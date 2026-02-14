@@ -241,6 +241,8 @@ ignore = [
     ".readthedocs.yaml",
     "CHANGELOG.rst",
     "CODE_OF_CONDUCT.rst",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
     "LICENSE",
     "SECURITY.rst",
     "docs/_static",
