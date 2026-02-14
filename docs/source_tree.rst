@@ -1,39 +1,61 @@
 Project source-tree
 ===================
 
-Below is the layout of our project (to 10 levels), followed by
+Below is the layout of the project (to 10 levels), followed by
 the contents of each key file.
 
-.. code-block:: bash
+.. code-block:: text
    :caption: Project directory layout
 
    sphinx-no-pragma/
-
    ├── docs
-   │   ├── _build
-   │   ├── _static
-   │   │   └── example_1.py
-   │   ├── _templates
-   │   ├── changelog.rst
-   │   ├── code_of_conduct.rst
    │   ├── conf.py
-   │   ├── conf.py.distrib
    │   ├── contributor_guidelines.rst
    │   ├── demo.rst
    │   ├── documentation.rst
    │   ├── index.rst
-   │   ├── index.rst.distrib
    │   ├── llms.rst
-   │   ├── make.bat
-   │   ├── Makefile
    │   ├── package.rst
-   │   ├── requirements.txt
-   │   ├── security.rst
    │   └── sphinx_no_pragma.rst
    ├── examples
+   │   ├── __init__.py
    │   └── example_1.py
-   ├── scripts
-   │   └── generate_project_source_tree.py
+   ├── .coveralls.yml
+   ├── CONTRIBUTING.rst
+   ├── Makefile
+   ├── pyproject.toml
+   ├── README.rst
+   ├── SECURITY.md
+   ├── sphinx_no_pragma.py
+   └── tests.py
+
+.coveralls.yml
+--------------
+
+.. literalinclude:: ../.coveralls.yml
+   :language: yaml
+   :caption: .coveralls.yml
+
+CONTRIBUTING.rst
+----------------
+
+.. literalinclude:: ../CONTRIBUTING.rst
+   :language: rst
+   :caption: CONTRIBUTING.rst
+
+README.rst
+----------
+
+.. literalinclude:: ../README.rst
+   :language: rst
+   :caption: README.rst
+
+SECURITY.md
+-----------
+
+.. literalinclude:: ../SECURITY.md
+   :language: markdown
+   :caption: SECURITY.md
 
 docs/_static/example_1.py
 -------------------------
@@ -41,20 +63,6 @@ docs/_static/example_1.py
 .. literalinclude:: _static/example_1.py
    :language: python
    :caption: docs/_static/example_1.py
-
-docs/changelog.rst
-------------------
-
-.. literalinclude:: changelog.rst
-   :language: rst
-   :caption: docs/changelog.rst
-
-docs/code_of_conduct.rst
-------------------------
-
-.. literalinclude:: code_of_conduct.rst
-   :language: rst
-   :caption: docs/code_of_conduct.rst
 
 docs/conf.py
 ------------
@@ -105,19 +113,19 @@ docs/package.rst
    :language: rst
    :caption: docs/package.rst
 
-docs/security.rst
------------------
-
-.. literalinclude:: security.rst
-   :language: rst
-   :caption: docs/security.rst
-
 docs/sphinx_no_pragma.rst
 -------------------------
 
 .. literalinclude:: sphinx_no_pragma.rst
    :language: rst
    :caption: docs/sphinx_no_pragma.rst
+
+examples/__init__.py
+--------------------
+
+.. literalinclude:: ../examples/__init__.py
+   :language: python
+   :caption: examples/__init__.py
 
 examples/example_1.py
 ---------------------
@@ -126,9 +134,23 @@ examples/example_1.py
    :language: python
    :caption: examples/example_1.py
 
-scripts/generate_project_source_tree.py
----------------------------------------
+pyproject.toml
+--------------
 
-.. literalinclude:: ../scripts/generate_project_source_tree.py
+.. literalinclude:: ../pyproject.toml
+   :language: toml
+   :caption: pyproject.toml
+
+sphinx_no_pragma.py
+-------------------
+
+.. literalinclude:: ../sphinx_no_pragma.py
    :language: python
-   :caption: scripts/generate_project_source_tree.py
+   :caption: sphinx_no_pragma.py
+
+tests.py
+--------
+
+.. literalinclude:: ../tests.py
+   :language: python
+   :caption: tests.py

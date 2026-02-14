@@ -42,9 +42,7 @@ Code standards
 
 .. code-block:: sh
 
-    make black
     make doc8
-    make isort
     make ruff
 
 Requirements
