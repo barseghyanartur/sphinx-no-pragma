@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 
 from sphinx.application import Sphinx
+
 from sphinx_no_pragma import DEFAULT_IGNORE_COMMENTS_ENDINGS
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
