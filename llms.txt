@@ -1469,14 +1469,18 @@ pyproject.toml
    "Changelog" = "https://sphinx-no-pragma.readthedocs.io/en/latest/changelog.html"
 
    [project.optional-dependencies]
-   all = ["sphinx-no-pragma[dev,test,docs]"]
+   all = ["sphinx-no-pragma[dev,test,docs,build]"]
+   build = [
+       "build",
+       "twine",
+       "wheel",
+   ]
    dev = [
        "detect-secrets",
        "doc8",
        "ipython",
        "mypy",
        "ruff",
-       "twine",
        "uv",
    ]
    test = [
