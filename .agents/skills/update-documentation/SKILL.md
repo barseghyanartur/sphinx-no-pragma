@@ -22,7 +22,7 @@ Keep documentation aligned with code and policy. This single skill handles docum
 ## 2. Ground truth and authority hierarchy
 
 | Artifact | Role | Authority level |
-|---|---|---|
+| --- | --- | --- |
 | `sphinx_no_pragma.py` | Source code | **Ground truth** — API, CLI, defaults, exceptions, config behavior |
 | `AGENTS.md` | Policy | Must match code reality |
 | `.agents/skills/**/*.md` | Procedures | Must match code reality |
@@ -91,7 +91,7 @@ Provide a report containing:
 Based on the repository scan, the following documentation files exist:
 
 | File | Responsibility | Audience |
-|---|---|---|
+| --- | --- | --- |
 | `README.rst` | Project overview, badges, installation, usage examples, features | End users |
 | `AGENTS.md` | Agent governance rules and repository facts | Agents / contributors |
 | `.agents/skills/**/*.md` | Agent procedures and standards | Agents |

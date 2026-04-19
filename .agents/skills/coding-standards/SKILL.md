@@ -20,7 +20,7 @@ Define the coding standards that govern this repository. These rules are non-neg
 The following categories are **selected** (enforced):
 
 | Category | Meaning |
-|---|---|
+| --- | --- |
 | `B` | Bugbear: common bugs and design issues |
 | `C4` | McCabe complexity |
 | `E` | pycodestyle style |
@@ -38,7 +38,7 @@ The following categories are **selected** (enforced):
 ### Ignored ruff rules
 
 | Rule | Reason |
-|---|---|
+| --- | --- |
 | `G004` | Allow f-strings in logging statements |
 | `ISC003` | Allow explicitly concatenated strings |
 | `TD002` | TO-DO without author (optional) |
