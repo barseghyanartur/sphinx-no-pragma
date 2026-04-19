@@ -2,171 +2,161 @@
 #    uv pip compile --all-extras -o docs/requirements.txt pyproject.toml
 alabaster==1.0.0
     # via sphinx
-asttokens==3.0.0
+asttokens==3.0.1
     # via stack-data
-babel==2.17.0
+babel==2.18.0
     # via sphinx
-backports-tarfile==1.2.0
-    # via jaraco-context
-black==25.1.0
+build==1.4.3
     # via sphinx-no-pragma (pyproject.toml)
-certifi==2025.4.26
+certifi==2026.2.25
     # via requests
-cffi==1.17.1
-    # via cryptography
-charset-normalizer==3.4.2
+charset-normalizer==3.4.7
     # via requests
-click==8.2.0
-    # via black
-coverage==7.8.0
+coverage==7.13.5
     # via pytest-cov
-cryptography==44.0.3
-    # via secretstorage
 decorator==5.2.1
     # via ipython
 detect-secrets==1.5.0
     # via sphinx-no-pragma (pyproject.toml)
-doc8==1.1.2
+doc8==0.11.2
     # via sphinx-no-pragma (pyproject.toml)
-docutils==0.21.2
+docutils==0.22.4
     # via
     #   sphinx-no-pragma (pyproject.toml)
     #   doc8
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
+    #   sphinx-llms-txt-link
+    #   sphinx-markdown-builder
     #   sphinx-rtd-theme
-exceptiongroup==1.3.0
-    # via
-    #   ipython
-    #   pytest
-executing==2.2.0
+executing==2.2.1
     # via stack-data
-id==1.5.0
+id==1.6.1
     # via twine
-idna==3.10
+idna==3.11
     # via requests
-imagesize==1.4.1
+imagesize==2.0.0
     # via sphinx
-importlib-metadata==8.7.0
-    # via keyring
-iniconfig==2.1.0
+iniconfig==2.3.0
     # via pytest
-ipython==8.36.0
+ipython==9.12.0
     # via sphinx-no-pragma (pyproject.toml)
-isort==6.0.1
-    # via sphinx-no-pragma (pyproject.toml)
+ipython-pygments-lexers==1.1.1
+    # via ipython
 jaraco-classes==3.4.0
     # via keyring
-jaraco-context==6.0.1
+jaraco-context==6.1.2
     # via keyring
-jaraco-functools==4.1.0
+jaraco-functools==4.4.0
     # via keyring
 jedi==0.19.2
     # via ipython
-jeepney==0.9.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.6
     # via sphinx
-keyring==25.6.0
+keyring==25.7.0
     # via twine
-markdown-it-py==3.0.0
+librt==0.9.0
+    # via mypy
+markdown-it-py==4.0.0
     # via rich
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via jinja2
-matplotlib-inline==0.1.7
+matplotlib-inline==0.2.1
     # via ipython
 mdurl==0.1.2
     # via markdown-it-py
-more-itertools==10.7.0
+more-itertools==11.0.2
     # via
     #   jaraco-classes
     #   jaraco-functools
-mypy==1.15.0
+mypy==1.20.1
     # via sphinx-no-pragma (pyproject.toml)
 mypy-extensions==1.1.0
-    # via
-    #   black
-    #   mypy
-nh3==0.2.21
+    # via mypy
+nh3==0.3.4
     # via readme-renderer
-packaging==25.0
+packaging==26.1
     # via
-    #   black
+    #   build
     #   pytest
     #   sphinx
     #   twine
-parso==0.8.4
+    #   wheel
+parso==0.8.6
     # via jedi
-pathspec==0.12.1
-    # via black
-pbr==6.1.1
-    # via stevedore
+pathspec==1.0.4
+    # via mypy
 pexpect==4.9.0
     # via ipython
-platformdirs==4.3.8
-    # via black
-pluggy==1.5.0
-    # via pytest
-prompt-toolkit==3.0.51
+pluggy==1.6.0
+    # via
+    #   pytest
+    #   pytest-cov
+prompt-toolkit==3.0.52
     # via ipython
 ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
-pycparser==2.22
-    # via cffi
-pygments==2.19.1
+pygments==2.20.0
     # via
     #   doc8
     #   ipython
+    #   ipython-pygments-lexers
+    #   pytest
     #   readme-renderer
     #   rich
     #   sphinx
-pytest==8.3.5
+pyproject-hooks==1.2.0
+    # via build
+pytest==9.0.3
     # via
     #   sphinx-no-pragma (pyproject.toml)
     #   pytest-codeblock
     #   pytest-cov
-pytest-codeblock==0.1.8
+pytest-codeblock==0.5.8
     # via sphinx-no-pragma (pyproject.toml)
-pytest-cov==6.1.1
+pytest-cov==7.1.0
     # via sphinx-no-pragma (pyproject.toml)
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via detect-secrets
 readme-renderer==44.0
     # via twine
-requests==2.32.3
+requests==2.33.1
     # via
     #   detect-secrets
-    #   id
     #   requests-toolbelt
     #   sphinx
     #   twine
 requests-toolbelt==1.0.0
     # via twine
-restructuredtext-lint==1.4.0
+restructuredtext-lint==2.0.2
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.0.0
+rich==15.0.0
     # via twine
-ruff==0.11.9
+roman-numerals==4.1.0
+    # via sphinx
+ruff==0.15.11
     # via sphinx-no-pragma (pyproject.toml)
-secretstorage==3.3.3
-    # via keyring
-setuptools==80.4.0
-    # via pbr
 snowballstemmer==3.0.1
     # via sphinx
-sphinx==8.1.3
+sphinx==9.1.0
     # via
     #   sphinx-no-pragma (pyproject.toml)
+    #   sphinx-llms-txt-link
+    #   sphinx-markdown-builder
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
-sphinx-rtd-theme==3.0.2
+sphinx-llms-txt-link==0.1.2
+    # via sphinx-no-pragma (pyproject.toml)
+sphinx-markdown-builder==0.6.10
+    # via sphinx-no-pragma (pyproject.toml)
+sphinx-rtd-theme==3.1.0
+    # via sphinx-no-pragma (pyproject.toml)
+sphinx-source-tree==0.2.3
     # via sphinx-no-pragma (pyproject.toml)
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
@@ -184,36 +174,26 @@ sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
 stack-data==0.6.3
     # via ipython
-stevedore==5.4.1
+stevedore==5.7.0
     # via doc8
-tomli==2.2.1
-    # via
-    #   black
-    #   coverage
-    #   doc8
-    #   mypy
-    #   pytest
-    #   sphinx
+tabulate==0.10.0
+    # via sphinx-markdown-builder
 traitlets==5.14.3
     # via
     #   ipython
     #   matplotlib-inline
-twine==6.1.0
+twine==6.2.0
     # via sphinx-no-pragma (pyproject.toml)
-typing-extensions==4.13.2
+typing-extensions==4.15.0
+    # via mypy
+urllib3==2.6.3
     # via
-    #   black
-    #   exceptiongroup
-    #   ipython
-    #   mypy
-    #   rich
-urllib3==2.4.0
-    # via
+    #   id
     #   requests
     #   twine
-uv==0.7.3
+uv==0.11.7
     # via sphinx-no-pragma (pyproject.toml)
-wcwidth==0.2.13
+wcwidth==0.6.0
     # via prompt-toolkit
-zipp==3.21.0
-    # via importlib-metadata
+wheel==0.46.3
+    # via sphinx-no-pragma (pyproject.toml)
