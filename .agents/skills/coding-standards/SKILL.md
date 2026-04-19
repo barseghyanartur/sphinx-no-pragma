@@ -8,6 +8,7 @@ description: Code style, typing, naming, and error handling conventions
 - Follow PEP 8 with line length of 80 characters
 - Use Black for formatting (configured in pyproject.toml)
 - Use isort for import sorting
+- Use ruff for linting
 
 ## Typing Rules
 
@@ -34,3 +35,5 @@ Code is validated by:
 - mypy (type checking)
 - black (formatting)
 - pre-commit hooks (automatic checks)
+
+All tools are run via `uv run` or Makefile targets

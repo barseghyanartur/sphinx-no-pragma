@@ -20,25 +20,31 @@ A task is complete when:
 3. **Test** — Run tests to verify the fix works
 4. **Repeat** — Continue until both lint and tests pass
 
-### Linting Commands
+### Linting Commands (uv-based)
 
 Run ruff:
 
 ```bash
-ruff check . --fix
-ruff format .
+make ruff
+```
+
+Or directly:
+
+```bash
+uv run ruff check . --fix
+uv run ruff format .
 ```
 
 Run mypy:
 
 ```bash
-mypy sphinx_no_pragma.py
+make mypy
 ```
 
-Run pre-commit:
+Or directly:
 
 ```bash
-pre-commit run --all-files
+uv run mypy sphinx_no_pragma.py
 ```
 
 ### Testing Commands
@@ -46,13 +52,27 @@ pre-commit run --all-files
 Run tests with pytest:
 
 ```bash
-pytest -vrx -s
+make quick-test
 ```
 
-Or using Makefile:
+Or directly:
 
 ```bash
-make test
+uv run pytest
+```
+
+### Pre-commit Commands
+
+Run pre-commit hooks:
+
+```bash
+make pre-commit
+```
+
+Or directly:
+
+```bash
+pre-commit run --all-files
 ```
 
 ### Stop Conditions

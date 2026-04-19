@@ -2,7 +2,7 @@
 
 ## Project overview
 
-A Sphinx extension that strips pragma comments (type: ignore, noqa, pragma: no cover, etc.) from source code included in documentation via `.. literalinclude::` directives.
+A Sphinx extension that strips pragma comments from source code included in documentation via `.. literalinclude::` directives.
 
 ## Architecture invariants
 
@@ -15,39 +15,39 @@ A Sphinx extension that strips pragma comments (type: ignore, noqa, pragma: no c
 
 ```
 .
-├── sphinx_no_pragma.py    # Main extension module
-├── tests.py               # Test suite (unittest/pytest)
-├── examples/              # Example code files
-├── docs/                  # Sphinx documentation source
-├── Makefile               # Build and task automation
-├── pyproject.toml         # Project configuration
-└── .pre-commit-config.yaml
+├── sphinx_no_pragma.py          # Main extension module
+├── tests.py                    # Test suite
+├── examples/                  # Example code files
+├── docs/                      # Sphinx documentation source
+├── Makefile                   # Build and task automation
+├── pyproject.toml              # Project configuration
+└── .pre-commit-config.yaml    # Pre-commit hooks
 ```
 
 ## Hard constraints
 
 - Do not modify source code to match documentation
 - Documentation must reflect actual API/CLI behavior
-- Code blocks in RST files may be tested via pytest-codeblock
+- Code blocks in RST files tested via pytest-codeblock
 - Pre-commit hooks must pass before commit
+- Never commit secrets or modify `.secrets.baseline`
 
 ## Known intentional behaviors — do not change
 
 - Pragma markers stripped: `# type: ignore`, `# noqa`, `# pragma: no cover`, `# pragma: no branch`, `# fmt: off/on/skip`, `# yapf: disable/enable`, `# pylint: disable/enable`, `# flake8: noqa`, `# noinspection`, `# pragma: allowlist secret`, `# pragma: NOSONAR`
-- Default behavior can be overridden via `ignore_comments_endings` in `conf.py`
-- Additional markers can be appended via `user_ignore_comments_endings` in `conf.py`
+- Default behavior overridden via `ignore_comments_endings` in `conf.py`
+- Additional markers appended via `user_ignore_comments_endings` in `conf.py`
 - Version: 0.1.3
 
 ## Configuration authority
 
-- `pyproject.toml` is authoritative for dependencies and tool configuration
-- `Makefile` is authoritative for build commands
-- `.pre-commit-config.yaml` is authoritative for pre-commit hooks
+- `pyproject.toml` — dependencies and tool configuration
+- `Makefile` — build commands
+- `.pre-commit-config.yaml` — pre-commit hooks
 
 ## Agent obligations
 
-- Run tests (pytest) and ensure they pass
-- Run linting (ruff, black, mypy) and fix all issues
-- Run pre-commit hooks before considering work complete
+- Run tests: `make quick-test` (local uv) or `make test` (Docker tox)
+- Run linting: `make ruff` and `make mypy`
+- Run pre-commit: `make pre-commit`
 - Preserve existing documentation tests (pytest-codeblock)
-- Never commit secrets or modify `.secrets.baseline`

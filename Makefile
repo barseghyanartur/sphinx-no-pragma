@@ -1,79 +1,140 @@
-# Update version ONLY here
+.PHONY: build test test-env shell shell-env quick-test ipython \
+        doc8 ruff mypy clean-dev clean-test clean pre-commit
+
 VERSION := 0.1.3
 SHELL := /bin/bash
 # Makefile for project
-VENV := ~/.virtualenvs/sphinx-no-pragma/bin/activate
+VENV := .venv/bin/activate
 UNAME_S := $(shell uname -s)
+
+# -----------------------------------------------------------------------
+# Build and testing (Docker-based)
+# -----------------------------------------------------------------------
+
+build:
+	docker compose build
+
+test: build
+	docker compose run --rm tox
+
+test-env: build
+	@if [ -z "$(ENV)" ]; then \
+		echo "Usage: make test-env ENV=py312"; \
+		exit 1; \
+	fi
+	docker compose run --rm tox -e $(ENV)
+
+shell: build
+	docker compose run --rm --entrypoint bash tox
+
+shell-env: build
+	@if [ -z "$(ENV)" ]; then \
+		echo "Usage: make shell-env ENV=py312"; \
+		exit 1; \
+	fi
+	docker compose run --rm --entrypoint bash tox -e $(ENV)
+
+# -----------------------------------------------------------------------
+# uv-based testing (run locally)
+# -----------------------------------------------------------------------
+
+quick-test:
+	uv run pytest
+
+ipython:
+	uv run ipython
+
+# -----------------------------------------------------------------------
+# Code quality
+# -----------------------------------------------------------------------
+
+doc8:
+	uv run doc8
+
+ruff:
+	uv run ruff check . --fix
+	uv run ruff format .
+
+mypy:
+	uv run mypy sphinx_no_pragma.py
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
 
 # Build documentation using Sphinx and zip it
 build-docs:
-	source $(VENV) && sphinx-source-tree
-# 	source $(VENV) && sphinx-build -n -b text docs builddocs
-	source $(VENV) && sphinx-build -n -a -b markdown docs builddocs
-	source $(VENV) && sphinx-build -n -a -b html docs builddocs
+	uv run sphinx-source-tree
+	uv run sphinx-build -n -b text docs builddocs
+	uv run sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
 
 rebuild-docs:
-	source $(VENV) && sphinx-apidoc . --full -o docs -H 'sphinx-no-pragma' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
+	uv run sphinx-apidoc . --full -o docs -H 'sphinx-no-pragma' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/index.rst.distrib docs/index.rst
 	cp docs/conf.py.distrib docs/conf.py
 
-pre-commit:
-	pre-commit run --all-files
-
-doc8:
-	source $(VENV) && doc8
-
-# Run ruff on the codebase
-ruff:
-	source $(VENV) && ruff check . --fix
-	source $(VENV) && ruff format .
+auto-build-docs:
+	uv run sphinx-autobuild docs docs/_build/html --port 5001
 
 # Serve the built docs on port 5001
 serve-docs:
-	source $(VENV) && python -m http.server 5001 --directory builddocs/
+	cd builddocs && python -m http.server 5001
+
+compile-requirements:
+	uv run uv pip compile --all-extras -o docs/requirements.txt pyproject.toml
+
+compile-requirements-upgrade:
+	uv run uv pip compile --all-extras -o docs/requirements.txt pyproject.toml --upgrade
+
+# ----------------------------------------------------------------------------
+# Pre-commit
+# ----------------------------------------------------------------------------
+
+pre-commit-install:
+	pre-commit install
+
+pre-commit: pre-commit-install
+	pre-commit run --all-files
+
+# ----------------------------------------------------------------------------
+# Installation
+# ----------------------------------------------------------------------------
+
+create-venv:
+	uv venv
 
 # Install the project
 install:
-	source $(VENV) && pip install -e .'[all]'
+	uv sync --all-extras
 
-test: clean
-	source $(VENV) && pytest -vrx -s
+# ----------------------------------------------------------------------------
+# Security
+# ----------------------------------------------------------------------------
 
-shell:
-	source $(VENV) && ipython
+scan-secrets:
+	uv run detect-secrets scan > .secrets.baseline
 
-create-secrets:
-	source $(VENV) && detect-secrets scan > .secrets.baseline
+verify-secrets:
+	uv run detect-secrets scan --baseline .secrets.baseline
 
-detect-secrets:
-	source $(VENV) && detect-secrets scan --baseline .secrets.baseline
+# -----------------------------------------------------------------------
+# Housekeeping
+# -----------------------------------------------------------------------
 
-# Clean up generated files
-clean:
-	find . -type f -name "*.pyc" -exec rm -f {} \;
-	find . -type f -name "builddocs.zip" -exec rm -f {} \;
-	find . -type f -name "*.py,cover" -exec rm -f {} \;
-	find . -type f -name "*.orig" -exec rm -f {} \;
-	find . -type d -name "__pycache__" -exec rm -rf {} \; -prune
-	rm -rf sphinx_no_pragma.egg-info/
-	rm -rf build/
-	rm -rf dist/
-	rm -rf .cache/
-	rm -rf htmlcov/
+clean-dev:
+	find . -name "*.orig" -exec rm -rf {} +
+	find . -name "__pycache__" -exec rm -rf {} +
+	rm -rf dist/ sphinx_no_pragma.egg-info/ .cache/ .mypy_cache/ .ruff_cache/
+
+clean-test:
+	find . -name "*.pyc" -exec rm -rf {} +
+	rm -rf .coverage .pytest_cache/ htmlcov/
+
+clean: clean-dev clean-test
 	rm -rf builddocs/
-	rm -rf testdocs/
-	rm -rf .coverage
-	rm -rf .pytest_cache/
-	rm -rf .mypy_cache/
-	rm -rf .ruff_cache/
-	rm -rf dist/
-
-compile-requirements:
-	source $(VENV) && uv pip compile --all-extras -o docs/requirements.txt pyproject.toml
-
-compile-requirements-upgrade:
-	source $(VENV) && uv pip compile --all-extras -o docs/requirements.txt pyproject.toml --upgrade
+	rm -rf test_build_docs/
+	rm -rf build/
 
 update-version:
 	@echo "Updating version in pyproject.toml and sphinx_no_pragma.py"
@@ -85,20 +146,25 @@ update-version:
 		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' sphinx_no_pragma.py; \
 	fi
 
-build:
-	source $(VENV) && python -m build .
+# ----------------------------------------------------------------------------
+# Release
+# ----------------------------------------------------------------------------
 
-check-build:
-	source $(VENV) && twine check dist/*
+package-build:
+	uv run python -m build .
+
+check-package-build:
+	uv run twine check dist/*
 
 release:
-	source $(VENV) && twine upload dist/* --verbose
+	uv run twine upload dist/* --verbose
 
 test-release:
-	source $(VENV) && twine upload --repository testpypi dist/*
+	uv run twine upload --repository testpypi dist/* --verbose
 
-mypy:
-	source $(VENV) && mypy sphinx_no_pragma.py
+# ----------------------------------------------------------------------------
+# Other
+# ----------------------------------------------------------------------------
 
 %:
 	@:
